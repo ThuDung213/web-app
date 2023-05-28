@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,22 +20,17 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-//Creator route
-Route::middleware(['auth', 'user-role:admin'])->group(function () {
-    Route::get("/admin/home", [HomeController::class, 'adminHome'])->name('home.admin');
-});
-
-//Creator route
-Route::middleware(['auth', 'user-role:creator'])->group(function () {
-    Route::get("/creator/home", [HomeController::class, 'creatorHome'])->name('home.creator');
-});
-
-//Client route
+// User Route
 Route::middleware(['auth', 'user-role:user'])->group(function () {
     Route::get("/home", [HomeController::class, 'userHome'])->name('home');
+});
+
+// Editor Route
+Route::middleware(['auth', 'user-role:editor'])->group(function () {
+    Route::get("/editor/home", [HomeController::class, 'editorHome'])->name('home.editor');
+});
+
+// Admin Route
+Route::middleware(['auth', 'user-role:admin'])->group(function () {
+    Route::get("/admin/home", [AdminController::class, 'index'])->name('home.admin');
 });
