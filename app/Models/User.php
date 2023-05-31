@@ -22,6 +22,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'avatar',
+        'address',
+        'image',
+        'role',
+        'description'
     ];
 
     /**
@@ -48,5 +54,9 @@ class User extends Authenticatable
         return new Attribute(
             get: fn ($value) => ["user", "creator", "admin"][$value],
         );
+    }
+
+    public function Projects() {
+        return $this->hasMany(Project::class, 'creator_id', 'id');
     }
 }

@@ -12,7 +12,7 @@
                             @csrf
 
                             <div class="row">
-                                <label for="email" class="col-form-label">{{ __('Email Address') }}</label>
+                                <label for="email" class="col-form-label">{{ __('メールアドレス') }}</label>
                             </div>
                             <div class="row mb-3">
                                 <div class="col">
@@ -29,7 +29,7 @@
                             </div>
 
                             <div class="row">
-                                <label for="password" class="col-form-label">{{ __('Password') }}</label>
+                                <label for="password" class="col-form-label">{{ __('パスワード') }}</label>
                             </div>
                             <div class="row mb-3">
                                 <div class="col">
@@ -48,27 +48,11 @@
                             <div class="row mb-3">
                                 <div class="col-md-8 offset-md-2">
                                     <button type="submit" class="form-control btn btn-auth submit rounded-pill">
-                                        {{ __('Login') }}
+                                        {{ __('ログイン') }}
                                     </button>
                                 </div>
                             </div>
                             <div class="row mb-0">
-                                {{-- <div class="form-group d-md-flex">
-                                <div class="w-50">
-                                    <label class="checkbox-wrap checkbox-primary" for="remember">
-                                        {{ __('Remember Me') }}
-                                        <input type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                        <span class="checkmark"></span>
-                                    </label>
-
-                                </div>
-                                <div class="">
-                                    @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Password') }}
-                                    </a>
-                                @endif
-                                </div> --}}
                                 <div class="form-group d-flex justify-content-between align-items-center">
                                     <!-- Checkbox -->
                                     <div class="form-check mb-0">
