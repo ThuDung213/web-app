@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class WorkingTime extends Model
 {
     use HasFactory;
+
+    public function Task()
+    {
+    }
 }

@@ -9,6 +9,6 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.index', ["msg" => "I am admin role"]);
+        return view('admin.home', ["msg" => "I am admin role"]);
     }
 }

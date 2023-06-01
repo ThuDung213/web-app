@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Front\ProjectController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,6 +33,11 @@ Route::middleware(['auth', 'user-role:editor'])->group(function () {
 });
 
 // Admin Route
-Route::middleware(['auth', 'user-role:admin'])->group(function () {
-    Route::get("/admin/home", [AdminController::class, 'index'])->name('home.admin');
+Route::prefix('admin')->middleware(['auth', 'user-role:admin'])->group(function () {
+    Route::get("/home", [AdminController::class, 'index'])->name('home.admin');
+
+    Route::prefix('project')->group(function () {
+        Route::get('/create', [ProjectController::class, 'create'])-> name('project.create');
+    });
 });
+

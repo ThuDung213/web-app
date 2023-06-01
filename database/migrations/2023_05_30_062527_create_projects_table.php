@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
 
+            $table->integer('client_id')->unsigned();
+            $table-> foreign('client_id') -> references('id') -> on('clients');
             $table->string('project_name');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
