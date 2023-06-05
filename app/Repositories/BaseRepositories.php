@@ -17,7 +17,7 @@ abstract class BaseRepositories implements RepositoriesInterface
         return $this->model->all();
     }
 
-    public function find(int $id)
+    public function find($id)
     {
         return $this->model->find($id);
     }
@@ -41,11 +41,11 @@ abstract class BaseRepositories implements RepositoriesInterface
         return $object->delete();
     }
 
-    public function searchAndPagination($searchBy, $keyword, $perPage = 5)
+    public function searchAndPaginate($searchBy, $keyword, $perPage = 5)
     {
         return $this->model
             ->where($searchBy, 'like', '%' . $keyword . '%')
-            ->orderBy($searchBy, 'desc')
+            ->orderBy('id', 'desc')
             ->paginate($perPage)
             ->appends(['search' => $keyword]);
     }

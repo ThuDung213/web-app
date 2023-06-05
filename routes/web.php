@@ -1,7 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Front\ProjectController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -34,10 +32,30 @@ Route::middleware(['auth', 'user-role:editor'])->group(function () {
 
 // Admin Route
 Route::prefix('admin')->middleware(['auth', 'user-role:admin'])->group(function () {
-    Route::get("/home", [AdminController::class, 'index'])->name('home.admin');
-
-    Route::prefix('project')->group(function () {
-        Route::get('/create', [ProjectController::class, 'create'])-> name('project.create');
+    Route::prefix('home')->group(function () {
+        Route::get('', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('home.admin');
     });
+
+
+    // Route::prefix('project')->group(function () {
+    //     Route::get('/create', [ProjectController::class, 'create'])-> name('project.create');
+    // });
+    Route::resource('/project', App\Http\Controllers\Admin\ProjectController::class)->names([
+        'index' => 'admin.project.index',
+        'create' => 'admin.project.create',
+        'show' => 'admin.project.show',
+        'edit' => 'admin.project.edit',
+        'update' => 'admin.project.update',
+        'destroy' => 'admin.project.destroy',
+    ]);
+    Route::resource('/task', App\Http\Controllers\Admin\TaskController::class)->names([
+        'index' => 'admin.task.index',
+        'create' => 'admin.task.create',
+        'show' => 'admin.task.show',
+        'edit' => 'admin.task.edit',
+        'update' => 'admin.task.update',
+        'destroy' => 'admin.task.destroy',
+    ]);
+
 });
 
