@@ -21,7 +21,7 @@ return new class extends Migration
 
             $table->string('task_name');
             $table->string('description');
-            $table->dateTime('status');
+            $table->string('status');
             $table->timestamps();
         });
 

@@ -13,7 +13,8 @@ aria-labelledby="addTaskModalLabel" aria-hidden="true">
         <!-- Modal Body -->
         <div class="modal-body">
             <!-- Task Form -->
-            <form>
+            <form method="post" action="{{ route('admin.task.index') }}" enctype="multipart/form-data">
+                @csrf
                 <div class="form-group">
                     <label for="taskName">Task Name</label>
                     <input type="text" class="form-control" id="taskName"
@@ -21,18 +22,17 @@ aria-labelledby="addTaskModalLabel" aria-hidden="true">
                 </div>
 
                 <div class="form-group">
-                    <label>Multiple (.select2-purple)</label>
+                    <label>Creators</label>
                     <div class="select2-purple">
                         <select class="select2" multiple="multiple"
-                            data-placeholder="Select a State"
-                            data-dropdown-css-class="select2-purple" style="width: 100%;">
-                            <option>Alabama</option>
-                            <option>Alaska</option>
-                            <option>California</option>
-                            <option>Delaware</option>
-                            <option>Tennessee</option>
-                            <option>Texas</option>
-                            <option>Washington</option>
+                            data-placeholder="Select creators"
+                            data-dropdown-css-class="select2-purple" style="width: 100%;" required
+                            name="creator_id">
+                            @foreach ($users as $user)
+                                <option value="{{ $user->id }}">
+                                    {{ $user-> name }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
                 </div>

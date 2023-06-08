@@ -22,7 +22,7 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-12 col-md-12 col-lg-8 order-2 order-md-1">
+                    <div class="col-12 col-md-8">
                         <div class="row">
                             <div class="col-12 col-sm-4">
                                 <div class="info-box bg-info">
@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mb-4">
                             <div class="col-12">
                                 <h4>Recent Activity</h4>
                                 <div class="post">
@@ -141,38 +141,36 @@
                             </p>
                         </div>
 
-                        <h5 class="mt-5 text-muted">Project files</h5>
-                        <ul class="list-unstyled">
-                            <li>
-                                <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i>
-                                    Functional-requirements.docx</a>
-                            </li>
-                            <li>
-                                <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-pdf"></i>
-                                    UAT.pdf</a>
-                            </li>
-                            <li>
-                                <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-envelope"></i>
-                                    Email-from-flatbal.mln</a>
-                            </li>
-                            <li>
-                                <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-image "></i>
-                                    Logo.png</a>
-                            </li>
-                            <li>
-                                <a href="" class="btn-link text-secondary"><i class="far fa-fw fa-file-word"></i>
-                                    Contract-10_12_2014.docx</a>
-                            </li>
+                        <ul class="list-unstyled" >
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Tasks</h4>
+                                </div>
+                                <div class="card-body">
+                                    <!-- the task -->
+                                    <div id="external-events">
+                                        @foreach ($tasks as $task)
+                                        <div class="external-event bg-success">
+                                            <a href="#" class="btn-link text-secondary" id="tasks">
+                                                <i class="far fa-fw"></i>
+                                                {{ $task->task_name }}
+                                            </a>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
                         </ul>
+
                         <div class="text-center mt-5 mb-3">
-                            {{-- <a href="#" class="btn btn-sm btn-primary">Add files</a> --}}
-                            <button type="button" class="btn btn-sm btn-info" data-toggle="modal"
-                                data-target="#addTaskModal">
-                                Add task
-                            </button>
-                            @include('admin.components.addTaskModal')
+                            <a href="javascript:void(0)" class="btn btn-sm btn-info"
+                                data-url="{{ route('admin.task.create') }}" id="add-task" data-target="#addTaskModal">Add
+                                Task</a>
+                            @include('admin.task.add')
                             <a href="#" class="btn btn-sm btn-warning">Report contact</a>
                         </div>
+
                     </div>
                 </div>
             </div>

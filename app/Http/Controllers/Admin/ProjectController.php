@@ -5,17 +5,20 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Service\Client\ClientServiceInterface;
 use App\Service\Project\ProjectServiceInterface;
+use App\Service\User\UserServiceInterface;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
     private $projectService;
     private $clientService;
+    private $userService;
 
-    public function __construct(ProjectServiceInterface $projectService, ClientServiceInterface $clientService)
+    public function __construct(ProjectServiceInterface $projectService, ClientServiceInterface $clientService, UserServiceInterface $userService)
     {
         $this->projectService = $projectService;
         $this->clientService = $clientService;
+        $this->userService = $userService;
     }
 
     public function index(Request $request)
@@ -38,10 +41,12 @@ class ProjectController extends Controller
 
     }
 
-    public function show($id)
+    public function show($id, Request $request)
     {
         $project = $this->projectService->find($id);
-        return view('admin.project.show', compact('project'));
+        $users = $this->userService->getUserByRole(1, $request);
+        $tasks = $project->Task()->get();
+        return view('admin.project.show', compact('project', 'users', 'tasks'));
     }
 
     public function edit($id)

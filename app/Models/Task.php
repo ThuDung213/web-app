@@ -19,8 +19,8 @@ class Task extends Model
         return $this->belongsTo(Project::class);
     }
 
-    public function User() : BelongsToMany
+    public function creators() : BelongsToMany
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'task_assigned', 'task_id', 'creator_id')->as('creators');
     }
 }

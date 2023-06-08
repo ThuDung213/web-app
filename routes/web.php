@@ -51,11 +51,14 @@ Route::prefix('admin')->middleware(['auth', 'user-role:admin'])->group(function 
     Route::resource('/task', App\Http\Controllers\Admin\TaskController::class)->names([
         'index' => 'admin.task.index',
         'create' => 'admin.task.create',
+        // 'store' => 'admin.task.store',
         'show' => 'admin.task.show',
         'edit' => 'admin.task.edit',
         'update' => 'admin.task.update',
         'destroy' => 'admin.task.destroy',
     ]);
+    Route::post('/project/{project}/task', [App\Http\Controllers\Admin\TaskController::class, 'store'])->name('admin.task.store');
+
 
 });
 
