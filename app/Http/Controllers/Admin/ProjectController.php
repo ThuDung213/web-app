@@ -46,7 +46,12 @@ class ProjectController extends Controller
         $project = $this->projectService->find($id);
         $users = $this->userService->getUserByRole(1, $request);
         $tasks = $project->Task()->get();
-        return view('admin.project.show', compact('project', 'users', 'tasks'));
+
+        //retrieve the creators of the tasks in specific project
+        $creators = $tasks->flatMap(function ($task) {
+            return $task->creators;
+        })->unique('id');
+        return view('admin.project.show', compact('project', 'users', 'tasks', 'creators'));
     }
 
     public function edit($id)

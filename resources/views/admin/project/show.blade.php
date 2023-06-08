@@ -4,7 +4,6 @@
 
 @section('body')
     <!-- Main content -->
-
     <section class="content">
         <!-- Default box -->
         <div class="card">
@@ -60,71 +59,20 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col-12">
-                                <h4>Recent Activity</h4>
-                                <div class="post">
-                                    <div class="user-block">
-                                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg"
-                                            alt="user image">
-                                        <span class="username">
-                                            <a href="#">Jonathan Burke Jr.</a>
-                                        </span>
-                                        <span class="description">Shared publicly - 7:45 PM today</span>
+                                <h4>Members</h4>
+                                @foreach ($creators as $creator)
+                                    <div class="row mb-3">
+                                        <div class="user-block text-center">
+                                            <img class="profile-user-img img-fluid img-circle"
+                                                src="../../dist/img/user1-128x128.jpg" alt="user image">
+                                            <span class="profile-username text-center">
+                                                <a href="#">{{ $creator->name }}</a>
+                                            </span>
+                                        </div>
+                                        <!-- /.user-block -->
+
                                     </div>
-                                    <!-- /.user-block -->
-                                    <p>
-                                        Lorem ipsum represents a long-held tradition for designers,
-                                        typographers and the like. Some people hate it and argue for
-                                        its demise, but others ignore.
-                                    </p>
-
-                                    <p>
-                                        <a href="#" class="link-black text-sm"><i class="fas fa-link mr-1"></i> Demo
-                                            File 1 v2</a>
-                                    </p>
-                                </div>
-
-                                <div class="post clearfix">
-                                    <div class="user-block">
-                                        <img class="img-circle img-bordered-sm" src="../../dist/img/user7-128x128.jpg"
-                                            alt="User Image">
-                                        <span class="username">
-                                            <a href="#">Sarah Ross</a>
-                                        </span>
-                                        <span class="description">Sent you a message - 3 days ago</span>
-                                    </div>
-                                    <!-- /.user-block -->
-                                    <p>
-                                        Lorem ipsum represents a long-held tradition for designers,
-                                        typographers and the like. Some people hate it and argue for
-                                        its demise, but others ignore.
-                                    </p>
-                                    <p>
-                                        <a href="#" class="link-black text-sm"><i class="fas fa-link mr-1"></i> Demo
-                                            File 2</a>
-                                    </p>
-                                </div>
-
-                                <div class="post">
-                                    <div class="user-block">
-                                        <img class="img-circle img-bordered-sm" src="../../dist/img/user1-128x128.jpg"
-                                            alt="user image">
-                                        <span class="username">
-                                            <a href="#">Jonathan Burke Jr.</a>
-                                        </span>
-                                        <span class="description">Shared publicly - 5 days ago</span>
-                                    </div>
-                                    <!-- /.user-block -->
-                                    <p>
-                                        Lorem ipsum represents a long-held tradition for designers,
-                                        typographers and the like. Some people hate it and argue for
-                                        its demise, but others ignore.
-                                    </p>
-
-                                    <p>
-                                        <a href="#" class="link-black text-sm"><i class="fas fa-link mr-1"></i> Demo
-                                            File 1 v1</a>
-                                    </p>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -141,27 +89,25 @@
                             </p>
                         </div>
 
-                        <ul class="list-unstyled" >
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Tasks</h4>
-                                </div>
-                                <div class="card-body">
-                                    <!-- the task -->
-                                    <div id="external-events">
-                                        @foreach ($tasks as $task)
+                        <div class="card">
+                            <div class="card-header">
+                                <h4 class="card-title">Tasks</h4>
+                            </div>
+                            <div class="card-body">
+                                <!-- the task -->
+                                <div id="external-events">
+                                    @foreach ($tasks as $task)
                                         <div class="external-event bg-success">
                                             <a href="#" class="btn-link text-secondary" id="tasks">
                                                 <i class="far fa-fw"></i>
                                                 {{ $task->task_name }}
                                             </a>
                                         </div>
-                                        @endforeach
-                                    </div>
+                                    @endforeach
                                 </div>
-                                <!-- /.card-body -->
                             </div>
-                        </ul>
+                            <!-- /.card-body -->
+                        </div>
 
                         <div class="text-center mt-5 mb-3">
                             <a href="javascript:void(0)" class="btn btn-sm btn-info"
@@ -170,14 +116,12 @@
                             @include('admin.task.add')
                             <a href="#" class="btn btn-sm btn-warning">Report contact</a>
                         </div>
-
                     </div>
                 </div>
             </div>
             <!-- /.card-body -->
         </div>
         <!-- /.card -->
-
     </section>
     <!-- /.content -->
 @endsection

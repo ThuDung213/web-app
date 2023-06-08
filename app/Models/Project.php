@@ -31,4 +31,9 @@ class Project extends Model
         return $this->belongsTo(Client::class);
     }
 
+    public function members()
+    {
+        return $this->hasManyThrough(User::class, Task::class);
+    }
+
 }
