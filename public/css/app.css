@@ -4347,6 +4347,7 @@ fieldset:disabled .btn {
     border: var(--bs-card-border-width) solid var(--bs-card-border-color);
     border-radius: var(--bs-card-border-radius);
 }
+
 .card > hr {
     margin-right: 0;
     margin-left: 0;

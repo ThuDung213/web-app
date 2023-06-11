@@ -8,7 +8,9 @@ abstract class BaseRepositories implements RepositoriesInterface
 
     public function __construct()
     {
-        $this->model = app()->make($this->getModel());
+        $this->model = app()->make(
+            $this->getModel()
+        );
     }
     abstract public function getModel();
 

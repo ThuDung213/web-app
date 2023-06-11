@@ -36,4 +36,8 @@ class Project extends Model
         return $this->hasManyThrough(User::class, Task::class);
     }
 
+    public function Time()
+    {
+        return $this->hasMany(WorkingTime::class);
+    }
 }

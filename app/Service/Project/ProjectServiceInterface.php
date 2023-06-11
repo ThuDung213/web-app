@@ -5,6 +5,6 @@ use App\Service\ServiceInterface;
 
 interface ProjectServiceInterface extends ServiceInterface
 {
-    public function getRelatedProjects($request);
+    public function getRelatedProjects($creator);
 
 }

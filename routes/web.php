@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Front\Client\ClientController;
+use App\Http\Controllers\Front\Creator\WorkingTimeController;
+use App\Http\Controllers\Front\Creator\CreatorController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,22 +23,24 @@ Route::get('/', function () {
 
 Auth::routes();
 // User Route
-Route::middleware(['auth', 'user-role:user'])->group(function () {
-    Route::get("/home", [HomeController::class, 'userHome'])->name('home');
+Route::middleware(['auth','client'])->group(function () {
+    Route::get("/client/home", [ClientController::class, 'index'])->name('home.client');
 });
 
 // Editor Route
-Route::middleware(['auth', 'user-role:editor'])->group(function () {
-    Route::get("/editor/home", [HomeController::class, 'editorHome'])->name('home.editor');
+Route::middleware(['auth','creator'])->prefix('creator')->group(function () {
+    Route::get("/home", [CreatorController::class, 'index'])->name('home.creator');
+
+    Route::get("{creator}/assign/{project}/manhours", [WorkingTimeController::class, 'index'])->name('time.index');
+    Route::post("{creator}/project/{project}/working-time", [WorkingTimeController::class, 'store'])->name('time.store');
+    Route::patch("working-time/update/{id}", [WorkingTimeController::class, 'update'])->name('time.update');
 });
 
 // Admin Route
-Route::prefix('admin')->middleware(['auth', 'user-role:admin'])->group(function () {
+Route::prefix('admin')->middleware('admin')->group(function () {
     Route::prefix('home')->group(function () {
         Route::get('', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('home.admin');
     });
-
-
     // Route::prefix('project')->group(function () {
     //     Route::get('/create', [ProjectController::class, 'create'])-> name('project.create');
     // });

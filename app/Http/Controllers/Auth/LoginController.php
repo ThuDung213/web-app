@@ -52,7 +52,7 @@ class LoginController extends Controller
             } else if (auth()->user()->role == 'creator') {
                 return redirect()->route('home.creator');
             } else {
-                return redirect()->route('home');
+                return redirect()->route('home.client');
             }
         } else {
             return redirect()

@@ -5,5 +5,5 @@ use App\Repositories\RepositoriesInterface;
 
 interface ProjectRepositoryInterface extends RepositoriesInterface
 {
-    public function getRelatedProjects($request);
+    public function getRelatedProjects($creator);
 }

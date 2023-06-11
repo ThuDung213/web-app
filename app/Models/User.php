@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -53,13 +54,21 @@ class User extends Authenticatable
     protected function role(): Attribute
     {
         return new Attribute(
-            get: fn ($value) => ["user", "creator", "admin"][$value],
+            get: fn ($value) => ["client", "creator", "admin"][$value],
         );
     }
 
     public function Task() : BelongsToMany
     {
         return $this->belongsToMany(Task::class,'task_assigned', 'creator_id', 'task_id');
+    }
+
+    public function Client() {
+        return $this->hasOne(Client::class);
+    }
+
+    public function Time() {
+        return $this->hasMany(WorkingTime::class);
     }
 
 }

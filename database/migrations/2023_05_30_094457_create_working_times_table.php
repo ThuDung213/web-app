@@ -17,13 +17,14 @@ return new class extends Migration
             $table->increments('id');
 
             $table->integer('creator_id')->unsigned();
-            $table->foreign('creator_id')->references('id') -> on('users');
+            $table->foreign('creator_id')->references('id') -> on('users')->onDelete('cascade');
 
-            $table->integer('task_id')->unsigned();
-            $table->foreign('task_id')->references('id') -> on('tasks');
+            $table->integer('project_id')->unsigned();
+            $table->foreign('project_id')->references('id') -> on('projects')->onDelete('cascade');
 
             $table->dateTime('working_date');
-            $table->time('working_hours');
+            $table->float('working_hours');
+            $table->string('working_content');
             $table->timestamps();
         });
     }

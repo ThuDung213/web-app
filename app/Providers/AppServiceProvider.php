@@ -9,6 +9,8 @@ use App\Repositories\Project\ProjectRepository;
 use App\Repositories\Project\ProjectRepositoryInterface;
 use App\Repositories\Task\TaskRepository;
 use App\Repositories\Task\TaskRepositoryInterface;
+use App\Repositories\Time\TimeRepository;
+use App\Repositories\Time\TimeRepositoryInterface;
 use App\Repositories\User\UserRepository;
 use App\Repositories\User\UserRepositoryInterface;
 use App\Service\Client\ClientService;
@@ -17,6 +19,8 @@ use App\Service\Project\ProjectService;
 use App\Service\Project\ProjectServiceInterface;
 use App\Service\Task\TaskService;
 use App\Service\Task\TaskServiceInterface;
+use App\Service\Time\TimeService;
+use App\Service\Time\TimeServiceInterface;
 use App\Service\User\UserService;
 use App\Service\User\UserServiceInterface;
 use Illuminate\Support\Facades\Schema;
@@ -69,6 +73,16 @@ class AppServiceProvider extends ServiceProvider
         $this->app->singleton(
             UserServiceInterface::class,
             UserService::class
+        );
+
+        //Working Time
+        $this->app->singleton(
+            TimeRepositoryInterface::class,
+            TimeRepository::class
+        );
+        $this->app->singleton(
+            TimeServiceInterface::class,
+            TimeService::class
         );
     }
 
