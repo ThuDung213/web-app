@@ -15,15 +15,13 @@ class Project extends Model
     protected $table = 'projects';
     protected $primaryKey = 'id';
     protected $guarded = [];
-
-    public function User()
-    {
-        return $this->belongsTo(User::class);
-    }
-
     public function Task()
     {
         return $this->hasMany(Task::class);
+    }
+    public function creators()
+    {
+        return $this->belongsToMany(User::class, 'project_creator', 'project_id', 'creator_id');
     }
 
     public function Client()

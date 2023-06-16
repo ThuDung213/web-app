@@ -14,8 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::create('task_assigned', function (Blueprint $table) {
-            $table->increments('id');
-
             $table->integer('creator_id')->unsigned();
             $table-> foreign('creator_id') -> references('id') -> on('users')->onDelete('cascade');
 

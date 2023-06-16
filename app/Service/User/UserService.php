@@ -22,4 +22,9 @@ class UserService extends BaseService implements UserServiceInterface
     {
         return $this->repository->getUserByRole($role, $request);
     }
+
+    public function getCreatorsByProject($id)
+    {
+        return $this->repository->getCreatorsByProject($id);
+    }
 }

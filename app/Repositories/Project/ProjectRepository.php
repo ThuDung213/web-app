@@ -12,6 +12,7 @@ class ProjectRepository extends BaseRepositories implements ProjectRepositoryInt
     {
         return Project::class;
     }
+    //Get project by creator
     public function getRelatedProjects($creator)
     {
         // Find the user by ID
@@ -29,6 +30,12 @@ class ProjectRepository extends BaseRepositories implements ProjectRepositoryInt
         $projects = $tasks->map(function ($task) {
             return $task->Project;
         })->unique('id');
+        return $projects;
+    }
+
+    public function getProjectsByClient($client)
+    {
+        $projects = $this->model->where('client_id', $client)->get();
         return $projects;
     }
 }

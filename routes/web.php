@@ -3,6 +3,7 @@
 use App\Http\Controllers\Front\Client\ClientController;
 use App\Http\Controllers\Front\Creator\WorkingTimeController;
 use App\Http\Controllers\Front\Creator\CreatorController;
+use App\Http\Controllers\Front\Creator\ProfileController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -27,13 +28,20 @@ Route::middleware(['auth','client'])->group(function () {
     Route::get("/client/home", [ClientController::class, 'index'])->name('home.client');
 });
 
-// Editor Route
+// Creator Route
 Route::middleware(['auth','creator'])->prefix('creator')->group(function () {
     Route::get("/home", [CreatorController::class, 'index'])->name('home.creator');
 
+    //Working Time
     Route::get("{creator}/assign/{project}/manhours", [WorkingTimeController::class, 'index'])->name('time.index');
     Route::post("{creator}/project/{project}/working-time", [WorkingTimeController::class, 'store'])->name('time.store');
     Route::patch("working-time/update/{id}", [WorkingTimeController::class, 'update'])->name('time.update');
+    Route::delete("working-time/destroy/{id}", [WorkingTimeController::class, 'destroy'])->name('time.destroy');
+
+    // Profile
+    Route::get("profile", [ProfileController::class, 'index'])->name('profile.index');
+    Route::get("profile/{profile}/edit", [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post("profile/update/{id}", [ProfileController::class, 'update'])->name('profile.update');
 });
 
 // Admin Route

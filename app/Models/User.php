@@ -58,17 +58,22 @@ class User extends Authenticatable
         );
     }
 
-    public function Task() : BelongsToMany
+    public function Task(): BelongsToMany
     {
-        return $this->belongsToMany(Task::class,'task_assigned', 'creator_id', 'task_id');
+        return $this->belongsToMany(Task::class, 'task_assigned', 'creator_id', 'task_id');
     }
 
-    public function Client() {
+    public function Client()
+    {
         return $this->hasOne(Client::class);
     }
 
-    public function Time() {
-        return $this->hasMany(WorkingTime::class);
+    public function Time()
+    {
+        return $this->hasMany(WorkingTime::class,'creator_id');
     }
-
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class, 'project_creator', 'creator_id', 'project_id');
+    }
 }

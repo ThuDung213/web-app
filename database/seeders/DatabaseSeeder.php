@@ -188,10 +188,30 @@ class DatabaseSeeder extends Seeder
             ],
             [
                 'creator_id' => '3',
-                'task_id' => '2',
+                'project_id' => '2',
                 'working_date' => '2023-06-15 00:00:00',
                 'working_hours' => '5',
                 'working_content' => 'Fix bug',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+        DB::table('project_creator')-> insert([
+            [
+                'creator_id' => '3',
+                'project_id' => '1',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'creator_id' => '4',
+                'project_id' => '1',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'creator_id' => '3',
+                'project_id' => '2',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

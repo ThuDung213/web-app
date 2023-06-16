@@ -18,4 +18,9 @@ class ProjectService extends BaseService implements ProjectServiceInterface
     {
         return $this->repository->getRelatedProjects($creator);
     }
+
+    public function getProjectsByClient($client)
+    {
+        return $this->repository->getProjectsByClient($client);
+    }
 }

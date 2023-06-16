@@ -7,4 +7,5 @@ interface UserRepositoryInterface extends RepositoriesInterface
 {
     public function getUserById();
     public function getUserByRole($role, $request);
+    public function getCreatorsByProject($id);
 }

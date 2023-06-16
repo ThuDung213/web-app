@@ -75,10 +75,11 @@
                             success: function(response) {
                                 $('#timeModal').modal('hide')
                                 $('#calendar').fullCalendar('renderEvent', {
-                                    'title': response.working_content,
-                                    'start': response.working_date,
-                                    'end': response.working_date,
-                                    'hours': response.working_hours,
+                                    'title': response.title,
+                                    'start': response.start,
+                                    'end': response.end,
+                                    'hours': response.hours,
+                                    'color' : response.color
                                 });
                             },
                             error: function(error) {
@@ -99,23 +100,54 @@
                     var working_date = moment(event.start).format('YYYY-MM-DD');
                     var working_content = event.working_content;
                     $.ajax({
-                            url: "{{ route('time.update', '') }}"+ '/' + id,
-                            type: "PATCH",
+                        url: "{{ route('time.update', '') }}" + '/' + id,
+                        type: "PATCH",
+                        datatype: 'json',
+                        data: {
+                            working_hours,
+                            working_date,
+                            working_content,
+                        },
+                        success: function(response) {
+                            swal("Good job!", "Event Updated!", "success");
+                        },
+                        error: function(error) {
+                            console.log(error);
+                        },
+                    });
+                },
+                eventClick: function(event) {
+                    var id = event.id;
+
+                    if (confirm('Are you sure want to remove it?')) {
+                        $.ajax({
+                            url: "{{ route('time.destroy', '') }}" + '/' + id,
+                            type: "DELETE",
                             datatype: 'json',
-                            data: {
-                                working_hours,
-                                working_date,
-                                working_content
-                            },
-                            success: function(response) {
-                                swal("Good job!", "Event Updated!", "success");
+                            success: function(response)
+                            {
+                                $('#calendar').fullCalendar('removeEvents', id);
+                                swal("Good job!", "Event Deleted!", "success");
                             },
                             error: function(error) {
                                 console.log(error);
                             },
                         });
+                    }
+                },
+                selectAllow: function(event)
+                {
+                    return moment(event.start).utcOffset(false).isSame(moment(event.end).subtract(1, 'second').utcOffset(false), 'day');
                 }
-            })
+
+            });
+
+            $('#timeModal').on("hidden.bs.modal", function () {
+                $('#saveBtn').unbind();
+            });
+
+            $('.fc-event').css('font-size', '13px');
+            $('.fc-event').css('height', '25px');
         });
     </script>
 @endsection

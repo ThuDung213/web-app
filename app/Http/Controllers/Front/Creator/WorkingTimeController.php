@@ -19,12 +19,20 @@ class WorkingTimeController extends Controller
         $workingTime = $this->timeService->getTimeByProject($creator, $project);
 
         foreach ($workingTime as $time) {
+            $color = null;
+            if ($time->working_content == 'test') {
+                $color = ' #ff9999';
+            }
+            if ($time->working_content == 'test2') {
+                $color = ' #9999ff';
+            }
             $events[] = [
                 'id' => $time->id,
                 'title' => $time->working_content,
                 'start' => $time->working_date,
                 'end' => $time->working_date,
                 'hours' => $time->working_hours,
+                'color' => $color,
             ];
         }
 
@@ -42,13 +50,27 @@ class WorkingTimeController extends Controller
         $data['creator_id'] = $creator;
         $data['project_id'] = $project;
         $working_time = $this->timeService->create($data);
-        return response()->json($working_time);
+
+        $color = null;
+
+        if($working_time-> working_content = "test") {
+            $color = ' #ff9999';
+        }
+
+        return response()->json([
+            'id' => $working_time->id,
+            'title' => $working_time->working_content,
+            'start' => $working_time->working_date,
+            'end' => $working_time->working_date,
+            'hours' => $working_time->working_hours,
+            'color' => $color ? $color : '',
+        ]);
     }
 
     public function update(Request $request, $id)
     {
         $working_time = $this->timeService->find($id);
-        if(!$working_time) {
+        if (!$working_time) {
             return response()->json([
                 'error' => 'Unable to locate the event id'
             ], 404);
@@ -58,5 +80,17 @@ class WorkingTimeController extends Controller
         ]);
 
         return response()->json('Event updated successfully');
+    }
+
+    public function destroy($id)
+    {
+        $working_time = $this->timeService->delete($id);
+        // if(!$working_time) {
+        //     return response()->json([
+        //         'error' => 'Unable to locate the event id'
+        //     ], 404);
+        // }
+
+        return $id;
     }
 }
