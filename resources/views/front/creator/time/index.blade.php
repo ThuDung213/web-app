@@ -2,7 +2,7 @@
 
 @section('title', 'Add Project')
 @section('content')
-    <div class="container">
+    <div class="container ">
         @csrf
         <!-- Modal -->
         <div class="modal fade" id="timeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -25,16 +25,22 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <h3 class="text-center mt-5">Calendar</h3>
-                <div class="col-md-11 offset-1 mt-5 mb-5">
-                    <div id="calendar">
 
-                    </div>
-                </div>
+        <div class="row">
+            <div class="col-sm-3">
+                <h4>Tasks List:</h4>
+                <ul class="list-group months">
+                    @foreach ($tasks as $task)
+                    <li class="list-group-item list-group-item-success" id="1">{{ $task-> task_name }}</li>
+                    @endforeach
+                </ul>
+                <br>
+            </div>
+            <div class="col-sm-9">
+                <div id='calendar' class="bg-white p-4 border-top border-5 border-info"></div>
             </div>
         </div>
+
     </div>
     <script>
         $.ajaxSetup({
@@ -43,12 +49,13 @@
             }
         });
         $(document).ready(function() {
+            //show working time
             var time = @json($events);
             $('#calendar').fullCalendar({
                 header: {
                     'left': 'prev, next today',
                     'center': 'title',
-                    'right': 'month, agendaWeek, agendaDay'
+                    'right': 'month, agendaWeek, agendaDay',
                 },
                 displayEventTime: false,
                 events: time,
@@ -62,7 +69,7 @@
                         var working_date = moment(start).format('YYYY-MM-DD');
                         var working_content = $('#workingContent').val();
                         console.log(time);
-
+                        //Add working time
                         $.ajax({
                             url: "{{ route('time.store', ['creator' => $creator, 'project' => $project]) }}",
                             type: "POST",
@@ -79,7 +86,7 @@
                                     'start': response.start,
                                     'end': response.end,
                                     'hours': response.hours,
-                                    'color' : response.color
+                                    'color': response.color
                                 });
                             },
                             error: function(error) {
@@ -94,6 +101,7 @@
                     });
                 },
                 editable: true,
+                //change working date
                 eventDrop: function(event) {
                     var id = event.id;
                     var working_hours = event.working_hours;
@@ -118,14 +126,13 @@
                 },
                 eventClick: function(event) {
                     var id = event.id;
-
+                    //Delete working time
                     if (confirm('Are you sure want to remove it?')) {
                         $.ajax({
                             url: "{{ route('time.destroy', '') }}" + '/' + id,
                             type: "DELETE",
                             datatype: 'json',
-                            success: function(response)
-                            {
+                            success: function(response) {
                                 $('#calendar').fullCalendar('removeEvents', id);
                                 swal("Good job!", "Event Deleted!", "success");
                             },
@@ -135,14 +142,14 @@
                         });
                     }
                 },
-                selectAllow: function(event)
-                {
-                    return moment(event.start).utcOffset(false).isSame(moment(event.end).subtract(1, 'second').utcOffset(false), 'day');
+                selectAllow: function(event) {
+                    return moment(event.start).utcOffset(false).isSame(moment(event.end).subtract(1,
+                        'second').utcOffset(false), 'day');
                 }
 
             });
 
-            $('#timeModal').on("hidden.bs.modal", function () {
+            $('#timeModal').on("hidden.bs.modal", function() {
                 $('#saveBtn').unbind();
             });
 

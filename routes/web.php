@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Front\Client\ClientController;
 use App\Http\Controllers\Front\Creator\WorkingTimeController;
 use App\Http\Controllers\Front\Creator\CreatorController;
 use App\Http\Controllers\Front\Creator\ProfileController;
@@ -23,9 +22,10 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
 // User Route
 Route::middleware(['auth','client'])->group(function () {
-    Route::get("/client/home", [ClientController::class, 'index'])->name('home.client');
+    Route::get("/client/home", [App\Http\Controllers\Front\Client\ClientController::class, 'index'])->name('home.client');
 });
 
 // Creator Route
@@ -49,9 +49,6 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::prefix('home')->group(function () {
         Route::get('', [App\Http\Controllers\Admin\AdminController::class, 'index'])->name('home.admin');
     });
-    // Route::prefix('project')->group(function () {
-    //     Route::get('/create', [ProjectController::class, 'create'])-> name('project.create');
-    // });
     Route::resource('/project', App\Http\Controllers\Admin\ProjectController::class)->names([
         'index' => 'admin.project.index',
         'create' => 'admin.project.create',
@@ -60,6 +57,9 @@ Route::prefix('admin')->middleware('admin')->group(function () {
         'update' => 'admin.project.update',
         'destroy' => 'admin.project.destroy',
     ]);
+    //assign members
+    Route::post('/project/{id}/member', [App\Http\Controllers\Admin\ProjectController::class, 'addMember'])->name('admin.project.addMember');
+
     Route::resource('/task', App\Http\Controllers\Admin\TaskController::class)->names([
         'index' => 'admin.task.index',
         'create' => 'admin.task.create',
@@ -71,6 +71,17 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     ]);
     Route::post('/project/{project}/task', [App\Http\Controllers\Admin\TaskController::class, 'store'])->name('admin.task.store');
 
+    Route::resource('/client',App\Http\Controllers\Admin\ClientController::class)->names([
+        'index' => 'admin.client.index',
+        'create' => 'admin.client.create',
+        'store' => 'admin.client.store',
+        'show' => 'admin.client.show',
+        'edit' => 'admin.client.edit',
+        'update' => 'admin.client.update',
+        'destroy' => 'admin.client.destroy',
+    ]);;
 
+    Route::get('/creators', [App\Http\Controllers\Admin\CreatorController::class, 'index'])->name('admin.creator.index');
+    Route::get('/creators/{creator}', [App\Http\Controllers\Admin\CreatorController::class, 'show'])->name('admin.creator.show');
 });
 

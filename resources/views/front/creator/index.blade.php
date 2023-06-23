@@ -2,21 +2,17 @@
 
 @section('title', 'Add Project')
 @section('content')
-    <div class="container">
+    <div class="container d-flex justify-content-center">
         <div class="row g-3">
-            @foreach ($projects as $project)
-                <div class="col-12 col-md-6 col-lg-4">
-                    <div class="card shadow">
-                        <a href="{{ route('time.index', ['creator' => $creator, 'project' => $project->id]) }}">
-                            <img src="{{ asset('img/bg.jpg') }}" alt="Europe" class="card-img-top" />
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $project->project_name }}</h5>
-                                <p class="card-text">Toi la junjun ngok nghek</p>
-                            </div>
-                        </a>
-                    </div>
+            @foreach ($projects as $key => $project)
+                <div class="box">
+                    <h3>{{ $project->project_name }}</h3>
+                    <p>{{ $project->description }}</p>
+                    <a href="{{ route('time.index', ['creator' => $creator, 'project' => $project->id]) }}"><button>Click here</button></a>
+                    <span class="count">{{ $key + 1 }}</span>
                 </div>
             @endforeach
         </div>
+
     </div>
 @endsection

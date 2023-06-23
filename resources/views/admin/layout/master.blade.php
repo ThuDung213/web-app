@@ -18,6 +18,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('adminlte/dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('adminlte/custom.css') }}">
     {{-- Multiple Select --}}
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2/css/select2.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}" />
@@ -25,7 +26,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 </head>
 
-<body class="hold-transition sidebar-mini">
+<body class="hold-transition sidebar-mini sidebar-collapse">
     <div class="wrapper">
 
         <!-- Navbar -->
@@ -174,16 +175,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        <aside class="main-sidebar sidebar-dark-primary elevation-4">
-            <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
-                <img src="{{ asset('adminlte/dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo"
-                    class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">AdminLTE 3</span>
-            </a>
+        <aside class="main-sidebar sidebar-light-info elevation-4">
 
             <!-- Sidebar -->
-            <div class="sidebar">
+            <div class="sidebar" >
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
@@ -220,7 +215,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Project List
-                                    <span class="right badge badge-danger">New</span>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.client.index') }}"
+                                class="nav-link {{ request()->segment(2) == 'project' ? 'mm-active' : '' }}">
+                                {{-- <i class="nav-icon fas fa-th"></i> --}}
+                                <i class="nav-icon fas fas fa-handshake"></i>
+                                <p>
+                                    Client List
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.creator.index') }}"
+                                class="nav-link {{ request()->segment(2) == 'project' ? 'mm-active' : '' }}">
+                                <i class="nav-icon fas fa-tree"></i>
+                                <p>
+                                    Creator List
                                 </p>
                             </a>
                         </li>
@@ -232,20 +245,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Starter Page</li>
-                            </ol>
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.container-fluid -->
-            </div>
+        <div class="content-wrapper" style="background-color: mintcream">
             <!-- /.content-header -->
 
             {{-- Main Content --}}
@@ -260,7 +260,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Control sidebar content goes here -->
             <div class="p-3">
                 <h5>Title</h5>
-                <p>Sidebar content</p>
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                             document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
             </div>
         </aside>
         <!-- /.control-sidebar -->

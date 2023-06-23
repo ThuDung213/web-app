@@ -8,7 +8,7 @@
                 <div class="col-md-4 border-right">
                     <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                         @php($avatar = auth()->user()->avatar)
-                        <img class="rounded-circle mt-5" width="150px"
+                        <img class="rounded-circle mt-5 mb-4" style="width: 150px; height: 150px;"
                             src="@if ($avatar == null) https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg
                             @else {{ asset('storage/' . $avatar) }} @endif"
                             id="image_preview_container">
@@ -67,7 +67,7 @@
                             </div>
                         </div>
 
-                        <div class="mt-5 text-center"><button id="btn" class="btn btn-primary profile-button"
+                        <div class="mt-5 text-center"><button id="btn" class="btn btn-auth profile-button"
                                 type="submit">Save Profile</button></div>
                     </div>
                 </div>

@@ -70,10 +70,10 @@ class User extends Authenticatable
 
     public function Time()
     {
-        return $this->hasMany(WorkingTime::class,'creator_id');
+        return $this->hasMany(WorkingTime::class);
     }
     public function projects()
     {
-        return $this->belongsToMany(Project::class, 'project_creator', 'creator_id', 'project_id');
+        return $this->belongsToMany(Project::class, 'task_assigned', 'creator_id', 'task_id');
     }
 }

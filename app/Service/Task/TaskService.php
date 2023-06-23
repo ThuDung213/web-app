@@ -13,4 +13,8 @@ class TaskService extends BaseService implements TaskServiceInterface
     {
         $this->repository = $taskRepository;
     }
+    public function getTaskByProject($creator, $project)
+    {
+        return $this->repository->getTaskByProject($creator, $project);
+    }
 }

@@ -8,36 +8,37 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-12">
-                            <a href="{{ route('admin.project.create') }}" class="btn btn-success float-right m-2">Add</a>
+                            <a href="{{ route('admin.client.create') }}" class="btn btn-success float-right m-2">Add</a>
                         </div>
                         <div class="col-md-12">
                             <table class="table table-bordered table-hover table-light">
                                 <thead class="table-info">
                                     <tr>
                                         <th scope="col">ID</th>
-                                        <th scope="col">Project Name</th>
-                                        <th scope="col">Client</th>
-                                        <th scope="col">Start Date</th>
-                                        <th scope="col">End Date</th>
-                                        <th scope="col">Status</th>
+                                        <th scope="col">Client Name</th>
+                                        <th scope="col">Address</th>
+                                        <th scope="col">Phone</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">City</th>
+                                        <th scope="col">Country</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($projects as $project)
+                                    @foreach ($clients as $client)
                                     <tr>
-                                        <th scope="row">{{ $project->id }}</th>
-                                        <td><a href="{{ route('admin.project.show', ['project' => $project-> id]) }}">{{ $project-> project_name }}</a></td>
-                                        <td>{{ $project-> Client-> client_name }}</td>
-                                        <td>{{ $project-> start_date }}</td>
-                                        <td>{{ $project-> end_date }}</td>
-                                        <td class="project-state">
-                                            <span class="badge badge-success">{{ $project -> status }}</span>
-                                        </td>
+                                        <th scope="row">{{ $client->id }}</th>
+                                        <td><a href="">{{ $client-> client_name }}</a></td>
+                                        <td>{{ $client-> address }}</td>
+                                        <td>{{ $client-> phone }}</td>
+                                        <td>{{ $client-> email }}</td>
+                                        <td>{{ $client-> city }}</td>
+                                        <td>{{ $client-> country }}</td>
+
                                         <td class="text-right py-0 align-middle">
-                                            <a href="{{ route('admin.project.edit', ['project' => $project->id]) }}"
+                                            <a href="{{ route('admin.client.edit', ['client' => $client->id]) }}"
                                                 class="btn btn-info btn-xs"><i class="fas fa-edit"></i></a>
-                                            <form action="{{ route('admin.project.destroy', ['project' => $project->id]) }}"
+                                            <form action="{{ route('admin.client.destroy', ['client' => $client->id]) }}"
                                                 method="POST" style="display: inline-block;">
                                                 @csrf
                                                 @method('DELETE')

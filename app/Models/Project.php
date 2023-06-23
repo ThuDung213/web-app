@@ -36,6 +36,6 @@ class Project extends Model
 
     public function Time()
     {
-        return $this->hasMany(WorkingTime::class);
+        return $this->hasMany(WorkingTime::class, 'project_id');
     }
 }

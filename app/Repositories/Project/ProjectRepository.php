@@ -23,13 +23,8 @@ class ProjectRepository extends BaseRepositories implements ProjectRepositoryInt
             // Handle the case when the user is not found
             return response()->json(['error' => 'User not found'], 404);
         }
-        // Retrieve the tasks for the user
-        $tasks = $creator->Task()->get();
-
-        // Retrieve the related projects from the tasks
-        $projects = $tasks->map(function ($task) {
-            return $task->Project;
-        })->unique('id');
+        // Retrieve the projects for the creator
+        $projects = $creator->projects()->get();
         return $projects;
     }
 
