@@ -9,18 +9,22 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Working Time</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">工数入力</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <input type="text" class="form-control" id="workingTime" placeholder="Enter your working hours">
-                        <span id="hoursError" class="text-danger"></span>
-                        <input type="text" class="form-control" id="workingContent" placeholder="Working Content">
-                        <span id="contentError" class="text-danger"></span>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="workingTime" placeholder="工数を入力してください">
+                            <span id="hoursError" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="workingContent" placeholder="仕事の内容">
+                            <span id="contentError" class="text-danger"></span>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" id="saveBtn" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
+                        <button type="button" id="saveBtn" class="btn btn-primary">保存</button>
                     </div>
                 </div>
             </div>
@@ -28,10 +32,10 @@
 
         <div class="row">
             <div class="col-sm-3">
-                <h4>Tasks List:</h4>
+                <h4>タスク:</h4>
                 <ul class="list-group months">
                     @foreach ($tasks as $task)
-                    <li class="list-group-item list-group-item-success" id="1">{{ $task-> task_name }}</li>
+                        <li class="list-group-item list-group-item-success" id="1">{{ $task->task_name }}</li>
                     @endforeach
                 </ul>
                 <br>
@@ -61,6 +65,7 @@
                 events: time,
                 selectable: true,
                 selectHelper: true,
+
                 select: function(start, end, allDays) {
                     $('#timeModal').modal('toggle');
 
@@ -80,9 +85,11 @@
                                 working_content
                             },
                             success: function(response) {
-                                $('#timeModal').modal('hide')
+                                $('#timeModal').modal('hide');
+                                var eventTitle = response.hours + 'H - ' + response
+                                    .title;
                                 $('#calendar').fullCalendar('renderEvent', {
-                                    'title': response.title,
+                                    'title': eventTitle,
                                     'start': response.start,
                                     'end': response.end,
                                     'hours': response.hours,

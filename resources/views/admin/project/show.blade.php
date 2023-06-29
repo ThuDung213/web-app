@@ -69,64 +69,91 @@
                                     <div class="col-md-10 mb-3 text-center">
                                         <div id="creators" class="row">
                                             @foreach ($project->creators as $creator)
-                                                <div class="col-12 col-sm-2">
-                                                        <div class="d-flex justify-content-start position-relative">
-                                                            <img src="https://bootdey.com/img/Content/avatar/avatar7.png"
-                                                                width="50" class="rounded-circle"
-                                                                style="display: block">
-                                                            <div class="overlay">
-                                                                <button class="delete-btn" title="Delete">
+                                                <div class="col-12 col-sm-2" id="member">
+                                                    <div class="d-flex justify-content-start position-relative">
+                                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                                                            width="50" class="rounded-circle" style="display: block">
+                                                        <div class="overlay">
+                                                            <form class="delete-member-form"
+                                                                action="{{ route('admin.project.deleteMember', ['project' => $project->id, 'creator' => $creator->id]) }}"
+                                                                method="POST">
+                                                                @csrf
+                                                                <button type="submit" class="delete-btn" title="Delete"
+                                                                    data-creator-id="{{ $creator->id }}">
                                                                     <i class="fas fa-times"></i>
                                                                 </button>
-                                                            </div>
+                                                            </form>
                                                         </div>
-
+                                                    </div>
                                                     <div class="text-left">
                                                         <span class="name">{{ $creator->name }}</span>
                                                     </div>
                                                 </div>
                                             @endforeach
                                         </div>
+                                        <input type="hidden" id="project_id" value="{{ $project->id }}">
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        @foreach ($project->creators as $creator)
-                            <div class="row mt-3 mb-3">
-                                <div class="col-md-12">
-                                    <div class="col">
-                                        @foreach ($workingHoursByProject as $projectId => $workingHoursByDay)
-                                            <div class="table-responsive">
-                                                <table class="table table-bordered table-sm " style="margin-bottom: 0">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="bg-success">
-                                                                {{ $creator->name }}
-                                                            </th>
-                                                            @foreach ($workingHoursByDay as $day => $workingHours)
-                                                                <th>{{ $day }}</th>
-                                                            @endforeach
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th class="text-center">
-                                                                {{ $creator->totalWorkingHours ?? 0 }}
-                                                            </th>
-
-                                                            @foreach ($workingHoursByDay as $day => $workingHours)
-                                                                <td>{{ $workingHours }}</td>
-                                                            @endforeach
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
+                        <div class="row">
+                            <form id="searchForm" class="mb-2"
+                                action="{{ route('admin.project.search', ['project' => $project->id]) }}" method="POST">
+                                @csrf
+                                <br>
+                                <div class="row">
+                                    <div class="container-fluid">
+                                        <div class="form-gourp row justify-content-center">
+                                            <div class="col-9">
+                                                <input type="month" class="form-control" id="month" name="month"
+                                                    value="{{ $monthYear }}" required>
                                             </div>
-                                        @endforeach
+                                            <div class="col-2">
+                                                <button type="submit" class="btn btn-success" name="search"
+                                                    title="Search">Search</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        @endforeach
+                            </form>
+                        </div>
+                        <div class="searchResultContainer">
+                            @foreach ($project->creators as $creator)
+                                <div class="row mt-3 mb-3">
+                                    <div class="col-md-12">
+                                        <div class="col">
+                                            @foreach ($workingHoursByProject as $projectId => $workingHoursByDay)
+                                                <div class="table-responsive">
+                                                    <table class="table table-bordered table-sm " style="margin-bottom: 0">
+                                                        <thead>
+                                                            <tr>
+                                                                <th class="bg-success">
+                                                                    {{ $creator->name }}
+                                                                </th>
+                                                                @foreach ($workingHoursByDay as $day => $workingHours)
+                                                                    <th>{{ $day }}</th>
+                                                                @endforeach
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th class="text-center">
+                                                                    {{ $creator->totalWorkingHours ?? 0 }}
+                                                                </th>
 
+                                                                @foreach ($workingHoursByDay as $day => $workingHours)
+                                                                    <td>{{ $workingHours }}</td>
+                                                                @endforeach
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
 
 
@@ -149,15 +176,48 @@
                             </div>
                             <div class="card-body">
                                 <!-- the task -->
-                                <div id="external-events" id="tasks">
+                                <div id="external-events">
                                     @foreach ($tasks as $task)
-                                        <div class="external-event bg-success">
-                                            <a href="#" class="btn-link text-secondary" >
-                                                <i class="far fa-fw"></i>
-                                                {{ $task->task_name }}
-                                            </a>
+                                        <div class="card card-success collapsed-card mb-3">
+                                            <div class="card-header p-2">
+                                                <h3 class="card-title">{{ $task->task_name }}</h3>
+
+                                                <div class="card-tools">
+                                                    <button type="button" class="btn btn-tool"
+                                                        data-card-widget="collapse"><i class="fas fa-plus"></i>
+                                                    </button>
+                                                    <form
+                                                        action="{{ route('admin.task.destroy', ['task' => $task->id]) }}"
+                                                        method="POST" style="display: inline-block;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit"
+                                                            onclick="return confirm('Are you sure you want to delete this task?')"
+                                                            class="btn btn-tool"
+                                                            title="Remove">
+                                                            <i class="fas fa-times"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                                <!-- /.card-tools -->
+                                            </div>
+                                            <!-- /.card-header -->
+                                            <div class="card-body">
+                                                <h5>Project Name: {{ $task->Project->project_name }}</h5>
+                                                <p>Description: {{ $task->description }}</p>
+                                                <p>Creators:</p>
+                                                <ul>
+                                                    @foreach ($task->creators as $creator)
+                                                        <li>{{ $creator->name }}</li>
+                                                    @endforeach
+                                                </ul>
+                                                <p>Status: {{ $task->status }}</p>
+                                            </div>
+                                            <!-- /.card-body -->
                                         </div>
+                                        <!-- /.card -->
                                     @endforeach
+
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -165,7 +225,8 @@
 
                         <div class="text-center mt-5 mb-3">
                             <a href="javascript:void(0)" class="btn btn-sm btn-info"
-                                data-url="{{ route('admin.task.create') }}" id="add-task" data-target="#addTaskModal">Add
+                                data-url="{{ route('admin.task.create') }}" id="add-task"
+                                data-target="#addTaskModal">Add
                                 Task</a>
                             @include('admin.task.add')
                         </div>
@@ -180,7 +241,8 @@
     <!-- /.content -->
 
     {{-- Add members modal --}}
-    <div class="modal fade" id="addMemberModal" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="false">
+    <div class="modal fade" id="addMemberModal" tabindex="-1" role="dialog" aria-hidden="true"
+        data-backdrop="false">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">

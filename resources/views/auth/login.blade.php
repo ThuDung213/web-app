@@ -1,4 +1,4 @@
-@extends('layouts.auth')
+@extends('auth.layouts.auth')
 
 @section('content')
     <div class="container">
@@ -8,6 +8,11 @@
                     <div class="card-header">{{ __('Login') }}</div>
 
                     <div class="card-body ">
+                        @if ($errors->has('error'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('error') }}
+                            </div>
+                        @endif
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
 
@@ -52,21 +57,22 @@
                                     </button>
                                 </div>
                             </div>
+                        </form>
                             <div class="row mb-0">
                                 <div class="form-group d-flex justify-content-between align-items-center">
                                     <!-- Checkbox -->
                                     <div class="form-check mb-0">
-                                        <input class="form-check-input me-2" type="checkbox" name="remember"
-                                            id="remember" {{ old('remember') ? 'checked' : '' }} />
+                                        <input class="form-check-input me-2" type="checkbox" name="remember" id="remember"
+                                            {{ old('remember') ? 'checked' : '' }} />
                                         <label class="form-check-label" for="remember">
                                             Remember me
                                         </label>
                                     </div>
                                     @if (Route::has('password.request'))
-                                    <a href="{{ route('password.request') }}" class="text-body btn btn-link" href="{{ route('password.request') }}">Forgot password?</a>
+                                        <a href="{{ route('password.request') }}" class="text-body btn btn-link">パスワードを忘れた?</a>
                                     @endif
                                 </div>
-                        </form>
+
                     </div>
                 </div>
             </div>

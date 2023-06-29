@@ -8,7 +8,7 @@
                 <div class="box">
                     <h3>{{ $project->project_name }}</h3>
                     <p>{{ $project->description }}</p>
-                    <a href="{{ route('time.index', ['creator' => $creator, 'project' => $project->id]) }}"><button>Click here</button></a>
+                    <a href="{{ route('time.index', ['creator' => $creator, 'project' => $project->id]) }}"><button>詳細</button></a>
                     <span class="count">{{ $key + 1 }}</span>
                 </div>
             @endforeach

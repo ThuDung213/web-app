@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Models\Task;
+use App\Service\Project\ProjectServiceInterface;
 use App\Service\Task\TaskServiceInterface;
 use App\Service\User\UserServiceInterface;
 use Illuminate\Http\Request;
@@ -12,11 +13,13 @@ class TaskController extends Controller
 {
     private $taskService;
     private $userService;
+    private $projectService;
 
-    public function __construct(TaskServiceInterface $taskService, UserServiceInterface $userService)
+    public function __construct(TaskServiceInterface $taskService, UserServiceInterface $userService, ProjectServiceInterface $projectService)
     {
         $this->taskService = $taskService;
         $this->userService = $userService;
+        $this->projectService = $projectService;
     }
 
     public function index(Request $request)
@@ -41,16 +44,22 @@ class TaskController extends Controller
                 'status' => $data['status'],
             ]);
 
-            if($request->has('creators')) {
-                $task->creators()->attach($request->creators);
+            if($request->has('task_creators')) {
+                $task->creators()->attach($request->task_creators);
             }
             $taskHtml = view('admin.task.task_item', ['task' => $task])->render();
             return response()->json(['message' => 'Task created successfully', 'task_html' => $taskHtml]);
     }
 
-    public function show($id)
+    public function destroy($id)
     {
+        $task = $this->taskService->find($id);
+        $this->taskService->delete($task->id);
 
+
+
+        return redirect()->route('admin.project.show',['project' => $task->project_id]);
     }
+
 
 }

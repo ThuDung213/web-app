@@ -22,13 +22,13 @@
 
                     <div class="form-group">
                         <label>Creators</label>
-                        <div class="select2-lightblue">
-                            <select id="creators" name="creators[]" class="select2" multiple="multiple" data-placeholder="Select creators"
-                                data-dropdown-css-class="select2-lightblue" style="width: 100%;" required
+                        <div class="select2-purple">
+                            <select id="task_creators" name="task_creators[]" class="select2" multiple="multiple" data-placeholder="Select creators"
+                                data-dropdown-css-class="select2-purple" style="width: 100%;" required
                                 name="creator_id">
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">
-                                        {{ $user->name }}
+                                @foreach ($project->creators as $creator)
+                                    <option value="{{ $creator->id }}">
+                                        {{ $creator->name }}
                                     </option>
                                 @endforeach
                             </select>

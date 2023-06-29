@@ -20,9 +20,9 @@ class TimeService extends BaseService implements TimeServiceInterface
         return $this->repository->getTimeByProject($creator, $project);
     }
 
-    public function getTotalWorkingTime($creator, $project)
+    public function getTotalWorkingTime($creator, $project, $month, $year)
     {
-        return $this->repository->getTotalWorkingTime($creator, $project);
+        return $this->repository->getTotalWorkingTime($creator, $project, $month, $year);
     }
 
     public function getTimeByDay($creator, $project)

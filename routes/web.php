@@ -26,6 +26,7 @@ Auth::routes();
 // User Route
 Route::middleware(['auth','client'])->group(function () {
     Route::get("/client/home", [App\Http\Controllers\Front\Client\ClientController::class, 'index'])->name('home.client');
+    Route::post("/client/home/search", [App\Http\Controllers\Front\Client\ClientController::class, 'search'])->name('home.client.search');
 });
 
 // Creator Route
@@ -59,6 +60,10 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     ]);
     //assign members
     Route::post('/project/{id}/member', [App\Http\Controllers\Admin\ProjectController::class, 'addMember'])->name('admin.project.addMember');
+    Route::post('project/{project}/delete-member/{creator}', [App\Http\Controllers\Admin\ProjectController::class, 'deleteMember'])->name('admin.project.deleteMember');
+    // Search working hours
+    Route::post('/project/{project}/search', [App\Http\Controllers\Admin\ProjectController::class, 'search'])->name('admin.project.search');
+
 
     Route::resource('/task', App\Http\Controllers\Admin\TaskController::class)->names([
         'index' => 'admin.task.index',
@@ -83,5 +88,6 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 
     Route::get('/creators', [App\Http\Controllers\Admin\CreatorController::class, 'index'])->name('admin.creator.index');
     Route::get('/creators/{creator}', [App\Http\Controllers\Admin\CreatorController::class, 'show'])->name('admin.creator.show');
+    Route::post('/creators/{creator}/search', [App\Http\Controllers\Admin\CreatorController::class, 'search'])->name('admin.creator.search');
 });
 

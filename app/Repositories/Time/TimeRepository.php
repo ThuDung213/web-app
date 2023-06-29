@@ -19,17 +19,21 @@ class TimeRepository extends BaseRepositories implements TimeRepositoryInterface
             ->get();
         return $time;
     }
-    public function getTotalWorkingTime($creator, $project)
+    public function getTotalWorkingTime($creator, $project, $month, $year)
     {
-        $currentMonth = Carbon::now()->month;
+        $currentMonth = $month;
+        $currentYear = $year;
         $currentMonthWorkingHours = $project->Time
             ->where('creator_id', $creator->id)
-            ->filter(function ($workingTime) use ($currentMonth) {
-                return Carbon::parse($workingTime->working_date)->month == $currentMonth;
+            ->where('project_id', $project->id)
+            ->filter(function ($workingTime) use ($currentMonth, $currentYear) {
+                $workingDate = Carbon::parse($workingTime->working_date);
+                return $workingDate->month == $currentMonth && $workingDate->year == $currentYear;
             })
             ->sum('working_hours');
         return $currentMonthWorkingHours;
     }
+
     public function getTimeByDay($creator, $project)
     {
         $currentMonth = Carbon::now()->month;

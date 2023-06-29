@@ -22,11 +22,11 @@
                 <div class="col-md-8 border-right">
                     <div class="p-3 py-5">
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <h4 class="text-right">Edit Profile</h4>
+                            <h4 class="text-right">プロフィール編集</h4>
                         </div>
                         <div class="row" id="res"></div>
                         <div class="row mt-2 align-items-center">
-                            <label class="col-form-label col-sm-3" for="name">Name</label>
+                            <label class="col-form-label col-sm-3" for="name">クリエイター名</label>
 
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="name" name="name"
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div class="row mt-2 align-items-center">
-                            <label class="col-form-label col-sm-3" for="email">Email</label>
+                            <label class="col-form-label col-sm-3" for="email">メール</label>
 
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="email" name="email"
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <div class="row mt-2 align-items-center">
-                            <label class="col-form-label col-sm-3" for="phone">Phone</label>
+                            <label class="col-form-label col-sm-3" for="phone">電話番号</label>
 
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="phone" name="phone"
@@ -51,7 +51,7 @@
                         </div>
 
                         <div class="row mt-2 align-items-center">
-                            <label class="col-form-label col-sm-3" for="address">Address</label>
+                            <label class="col-form-label col-sm-3" for="address">アドレス</label>
 
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="address" name="address"
@@ -60,7 +60,7 @@
                         </div>
 
                         <div class="row mt-2 align-items-center">
-                            <label class="col-form-label col-sm-3" for="description">Description</label>
+                            <label class="col-form-label col-sm-3" for="description">ディスクリプション</label>
                             <div class="col-sm-9">
                                 <input type="text" class="form-control" id="description" name="description"
                                     placeholder="Description" value="{{ $creator->description ?? '' }}">
@@ -68,7 +68,7 @@
                         </div>
 
                         <div class="mt-5 text-center"><button id="btn" class="btn btn-auth profile-button"
-                                type="submit">Save Profile</button></div>
+                                type="submit">保存</button></div>
                     </div>
                 </div>
 

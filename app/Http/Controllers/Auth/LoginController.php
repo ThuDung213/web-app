@@ -27,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
      * Create a new controller instance.
@@ -46,18 +46,24 @@ class LoginController extends Controller
             'email' => 'required|email',
             'password' => 'required'
         ]);
-        if (auth()->attempt(['email' => $input['email'], 'password' => $input['password']])) {
-            if (auth()->user()->role == 'admin') {
+
+        $credentials = ['email' => $input['email'], 'password' => $input['password']];
+
+        if (auth()->attempt($credentials)) {
+            $user = auth()->user();
+
+            if ($user->role == 'admin') {
                 return redirect()->route('home.admin');
-            } else if (auth()->user()->role == 'creator') {
+            } else if ($user->role == 'creator') {
                 return redirect()->route('home.creator');
-            } else {
+            } else if ($user->role == 'client') {
                 return redirect()->route('home.client');
             }
         } else {
             return redirect()
                 ->route("login")
-                ->with("error", "Incorrect email or password");
+                ->withErrors(['error' => 'Incorrect email or password'])
+                ->withInput($request->except('password'));
         }
     }
 }

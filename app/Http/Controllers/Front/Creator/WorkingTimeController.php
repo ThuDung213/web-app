@@ -25,7 +25,7 @@ class WorkingTimeController extends Controller
         foreach ($workingTime as $time) {
             $events[] = [
                 'id' => $time->id,
-                'title' => $time->working_content,
+                'title' =>$time->working_hours.'H -'. $time->working_content,
                 'start' => $time->working_date,
                 'end' => $time->working_date,
                 'hours' => $time->working_hours,

@@ -11450,12 +11450,20 @@ body {
 .table-responsive::-webkit-scrollbar {
     width: 4px;
     height: 4px;
-     /* Set the width of the scrollbar */
-  }
+    /* Set the width of the scrollbar */
+}
 
-  .table-responsive::-webkit-scrollbar-thumb:horizontal{
+.table-responsive::-webkit-scrollbar-thumb:horizontal {
     width: 4px;
     height: 4px;
     background: #000;
     border-radius: 4px;
+}
+.active-pink-2 input.form-control[type="text"]:focus:not([readonly]) {
+    border-bottom: 1px solid #f48fb1;
+    box-shadow: 0 1px 0 0 #f48fb1;
+}
+.active-pink .fa,
+.active-pink-2 .fa {
+    color: #f48fb1;
 }

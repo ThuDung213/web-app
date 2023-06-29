@@ -3,12 +3,12 @@
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-<html lang="en">
+<html lang="ja">
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Starter</title>
+    <title>Admin Page</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -37,136 +37,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
                             class="fas fa-bars"></i></a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">Contact</a>
-                </li>
             </ul>
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
-                <!-- Navbar Search -->
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                        <i class="fas fa-search"></i>
-                    </a>
-                    <div class="navbar-search-block">
-                        <form class="form-inline">
-                            <div class="input-group input-group-sm">
-                                <input class="form-control form-control-navbar" type="search" placeholder="Search"
-                                    aria-label="Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-navbar" type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </li>
 
-                <!-- Messages Dropdown Menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-comments"></i>
-                        <span class="badge badge-danger navbar-badge">3</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <a href="#" class="dropdown-item">
-                            <!-- Message Start -->
-                            <div class="media">
-                                <img src="{{ asset('adminlte/dist/img/user1-128x128.jpg') }}" alt="User Avatar"
-                                    class="img-size-50 mr-3 img-circle">
-                                <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        Brad Diesel
-                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">Call me whenever you can...</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                                </div>
-                            </div>
-                            <!-- Message End -->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <!-- Message Start -->
-                            <div class="media">
-                                <img src="{{ asset('adminlte/dist/img/user8-128x128.jpg') }}" alt="User Avatar"
-                                    class="img-size-50 img-circle mr-3">
-                                <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        John Pierce
-                                        <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">I got your message bro</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                                </div>
-                            </div>
-                            <!-- Message End -->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <!-- Message Start -->
-                            <div class="media">
-                                <img src="{{ asset('adminlte/dist/img/user3-128x128.jpg') }}" alt="User Avatar"
-                                    class="img-size-50 img-circle mr-3">
-                                <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        Nora Silvester
-                                        <span class="float-right text-sm text-warning"><i
-                                                class="fas fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">The subject goes here</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                                </div>
-                            </div>
-                            <!-- Message End -->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-                    </div>
-                </li>
-                <!-- Notifications Dropdown Menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">15</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <span class="dropdown-header">15 Notifications</span>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-envelope mr-2"></i> 4 new messages
-                            <span class="float-right text-muted text-sm">3 mins</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-users mr-2"></i> 8 friend requests
-                            <span class="float-right text-muted text-sm">12 hours</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <i class="fas fa-file mr-2"></i> 3 new reports
-                            <span class="float-right text-muted text-sm">2 days</span>
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-                    </div>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                         <i class="fas fa-expand-arrows-alt"></i>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"
-                        role="button">
+                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
                         <i class="fas fa-th-large"></i>
                     </a>
                 </li>
@@ -178,15 +60,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <aside class="main-sidebar sidebar-light-info elevation-4">
 
             <!-- Sidebar -->
-            <div class="sidebar" >
+            <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                     <div class="image">
-                        <img src="{{ asset('adminlte/dist/img/user2-160x160.jpg') }}" class="img-circle elevation-2"
-                            alt="User Image">
+                        @php($avatar = Auth::user()->avatar)
+                        <img width="38" height="40" class="img-circle elevation-2"
+                            src="@if ($avatar == null) https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg
+                                    @else {{ asset('storage/' . $avatar) }} @endif"
+                            alt="">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
+                        <a href="#" class="d-block">{{ Auth::user()->name }}</a>
                     </div>
                 </div>
 
@@ -205,35 +90,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    <ul id="nav-items" class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+                        <li class="nav-item">
+                            <a href="{{ route('admin.client.index') }}"
+                                class="nav-link {{ request()->segment(2) == 'client' ? 'mm-active' : '' }}">
+                                {{-- <i class="nav-icon fas fa-th"></i> --}}
+                                <i class="nav-icon fas fas fa-handshake"></i>
+                                <p>
+                                    クライアント管理
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.project.index') }}"
                                 class="nav-link {{ request()->segment(2) == 'project' ? 'mm-active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
-                                    Project List
-                                </p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('admin.client.index') }}"
-                                class="nav-link {{ request()->segment(2) == 'project' ? 'mm-active' : '' }}">
-                                {{-- <i class="nav-icon fas fa-th"></i> --}}
-                                <i class="nav-icon fas fas fa-handshake"></i>
-                                <p>
-                                    Client List
+                                    プロジェクト管理
                                 </p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('admin.creator.index') }}"
-                                class="nav-link {{ request()->segment(2) == 'project' ? 'mm-active' : '' }}">
+                                class="nav-link {{ request()->segment(2) == 'creator' ? 'mm-active' : '' }}">
                                 <i class="nav-icon fas fa-tree"></i>
                                 <p>
-                                    Creator List
+                                    クリエイター管理
                                 </p>
                             </a>
                         </li>
@@ -253,18 +138,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
             <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->
 
         <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
+        <aside class="control-sidebar bg-info no-hover">
             <!-- Control sidebar content goes here -->
             <div class="p-3">
-                <h5>Title</h5>
-                <a class="dropdown-item" href="{{ route('logout') }}"
-                    onclick="event.preventDefault();
+                <h5>
+                    <a class="dropdown-item text-white" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
-                    {{ __('Logout') }}
-                </a>
+                        {{ __('ログアウト') }}
+                    </a>
+                </h5>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
@@ -274,13 +159,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
         <!-- Main Footer -->
         <footer class="main-footer">
-            <!-- To the right -->
-            <div class="float-right d-none d-sm-inline">
-                Anything you want
-            </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
-            reserved.
+            <strong>Copyright &copy; 2023 <a href="https://adminlte.io">トゥーズン</a>.</strong>
         </footer>
     </div>
     <!-- ./wrapper -->
@@ -300,6 +180,27 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{ asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
     <script src="{{ asset('adminlte/my_script.js') }}"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+         $(document).ready(function() {
+        // Get the current URL segment
+        var currentSegment = '{{ request()->segment(2) }}';
+
+        // Find the nav items
+        var navItems = $('#nav-items').find('.nav-link');
+
+        // Loop through each nav item
+        navItems.each(function() {
+            var navLink = $(this);
+            var href = navLink.attr('href');
+
+            // Check if the href contains the current segment
+            if (href.includes(currentSegment)) {
+                // Add the 'active' class to the matching nav item
+                navLink.addClass('active');
+            }
+        });
+    });
+    </script>
 
 </body>
 

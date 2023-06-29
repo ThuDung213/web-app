@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Project;
 use App\Service\Client\ClientServiceInterface;
 use App\Service\Project\ProjectServiceInterface;
 use App\Service\Time\TimeServiceInterface;
 use App\Service\User\UserServiceInterface;
 use Carbon\Carbon;
+use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use PDOException;
 
 class ProjectController extends Controller
 {
@@ -49,14 +53,17 @@ class ProjectController extends Controller
         $project = $this->projectService->find($id);
         $users = $this->userService->getUserByRole(1, $request);
         $tasks = $project->Task()->get();
-        $currentMonth = Carbon::now()->month;
+        $month = Carbon::now()->month;
+        $year = Carbon::now()->year;
+        $workingHoursByProject = [];
         foreach ($project->creators as $creator) {
             $workingHoursByDay = $this->timeService->getTimeByDay($creator, $project);
             $workingHoursByProject[$project->id] = $workingHoursByDay;
 
-            $creator->totalWorkingHours = $this->timeService->getTotalWorkingTime($creator, $project);
+            $creator->totalWorkingHours = $this->timeService->getTotalWorkingTime($creator, $project, $month, $year);
         }
-        return view('admin.project.show', compact('project', 'users', 'tasks', 'workingHoursByProject'));
+        $monthYear = Carbon::now()->format('Y-m');
+        return view('admin.project.show', compact('project', 'users', 'tasks', 'workingHoursByProject', 'monthYear'));
     }
 
     public function edit($id)
@@ -98,5 +105,46 @@ class ProjectController extends Controller
             'message' => 'Creators added successfully',
             'creatorsHtml' => $creatorsHtml
         ]);
+    }
+
+    public function deleteMember($project, $creator)
+    {
+        try {
+            $creator = $this->userService->find($creator);
+            $project = $this->projectService->find($project);
+            $project->creators()->detach($creator);
+
+            $html = view('admin.components.creator_item', ['creators' => $project->creators()->get()])->render();
+            return response()->json([
+                'message' => 'Creator removed successfully',
+                'html' => $html
+            ]);
+        } catch (ModelNotFoundException $e) {
+            return response()->json([
+                'message' => 'Creator or project not found'
+            ], 404);
+        } catch (PDOException $e) {
+            return response()->json([
+                'message' => 'Error removing creator'
+            ], 500);
+        }
+    }
+
+    public function search(Request $request, $project)
+    {
+        $project = $this->projectService->find($project);
+        $monthYear = $request->input('month');
+        $month =  Carbon::parse($monthYear)->month;
+        $year = Carbon::parse($monthYear)->year;
+        $users = $this->userService->getUserByRole(1, $request);
+        $tasks = $project->Task()->get();
+        foreach ($project->creators as $creator) {
+            $workingHoursByDay = $this->timeService->getTimeByDay($creator, $project);
+            $workingHoursByProject[$project->id] = $workingHoursByDay;
+
+            $creator->totalWorkingHours = $this->timeService->getTotalWorkingTime($creator, $project, $month, $year);
+        }
+        return view('admin.project.show', compact('project', 'users', 'tasks', 'workingHoursByProject', 'monthYear'));
+        // return response()->json(['html' => $resultHtml]);
     }
 }
