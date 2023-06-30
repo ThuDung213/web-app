@@ -21,7 +21,7 @@
                                         placeholder="Project name" value="">
                                 </div>
                                 <div class="form-group">
-                                    <label>クライアン名 (会社名)</label>
+                                    <label>クライアントト名 (会社名)</label>
                                     <select required class="form-control" id="client_id" name="client_id">
                                         <option value="">Client name</option>
                                         @foreach ($clients as $client)
@@ -51,7 +51,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="description">ディスクライブ</label>
+                                    <label for="description">ディスクリプション</label>
                                     <textarea type="text" class="form-control" id="description" name="description"
                                         required placeholder="Description"></textarea>
                                 </div>

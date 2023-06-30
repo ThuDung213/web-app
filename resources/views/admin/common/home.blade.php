@@ -5,7 +5,7 @@
 @section('body')
             <!-- Main content -->
             <div class="content">
-                Admin Dashboard
+
             </div>
             <!-- /.content -->
 

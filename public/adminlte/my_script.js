@@ -102,25 +102,26 @@ function addMember() {
     });
 }
 
-function deleteMember(creatorId) {
-    //Delete creator from project
-    if (confirm('Are you sure you want to delete this creator?')) {
-        $.ajax({
-            url: $('#deleteMemberForm').attr('action'),
-            type: 'POST',
-            data: $('#deleteMemberForm').serialize(),
-            dataType: 'json',
-            success: function (response) {
-                //Update the list of creators
-                $('#creators').append(response.html);
-            },
-            error: function (xhr, status, error) {
-                // Handle the error response
-                console.error(error);
-            }
-        });
-    }
-}
+// function deleteMember(creatorId) {
+//     //Delete creator from project
+//     if (confirm('Are you sure you want to delete this creator?')) {
+//         $.ajax({
+//             url: $('#deleteMemberForm').attr('action'),
+//             type: 'POST',
+//             data: $('#deleteMemberForm').serialize(),
+//             dataType: 'json',
+//             success: function (response) {
+//                 //Update the list of creators
+//                 console.log(response);
+//                 $('#member[data-creator-id="' + creatorId + '"]').hide();
+//             },
+//             error: function (xhr, status, error) {
+//                 // Handle the error response
+//                 console.error(error);
+//             }
+//         });
+//     }
+// }
 
 //Search working time
 // function searchWorkingTime(project_id, month) {

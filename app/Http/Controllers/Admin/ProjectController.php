@@ -100,7 +100,7 @@ class ProjectController extends Controller
             $creators = [];
         }
         // Render the updated list of creators
-        $creatorsHtml = view('admin.components.creator_item', ['creators' => $creators])->render();
+        $creatorsHtml = view('admin.components.creator_item', ['project' => $project, 'creators' => $creators])->render();
         return response()->json([
             'message' => 'Creators added successfully',
             'creatorsHtml' => $creatorsHtml
@@ -113,21 +113,13 @@ class ProjectController extends Controller
             $creator = $this->userService->find($creator);
             $project = $this->projectService->find($project);
             $project->creators()->detach($creator);
-
-            $html = view('admin.components.creator_item', ['creators' => $project->creators()->get()])->render();
-            return response()->json([
-                'message' => 'Creator removed successfully',
-                'html' => $html
-            ]);
+            return redirect()->route('admin.project.show', ['project' => $project]);
         } catch (ModelNotFoundException $e) {
             return response()->json([
-                'message' => 'Creator or project not found'
-            ], 404);
-        } catch (PDOException $e) {
-            return response()->json([
-                'message' => 'Error removing creator'
-            ], 500);
+                'message' => 'Creator not found',
+            ]);
         }
+
     }
 
     public function search(Request $request, $project)

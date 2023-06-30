@@ -144,7 +144,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Control sidebar content goes here -->
             <div class="p-3">
                 <h5>
-                    <a class="dropdown-item text-white" href="{{ route('logout') }}"
+                    <a class="dropdown-item text-white bg-transparent" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
                         {{ __('ログアウト') }}

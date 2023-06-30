@@ -10,7 +10,7 @@
                         @php($avatar = $creator->avatar)
                         <img src="@if ($avatar == null) https://bootdey.com/img/Content/avatar/avatar7.png
                              @else {{ asset('storage/' . $avatar) }} @endif"
-                            class="img-radius card-img-top" alt="Avatar">
+                            class="img-radius rounded-circle card-img-top" alt="Avatar" width="100" height="100">
                     </div>
                     <div class="col-md-10">
                         <div class="card-body">

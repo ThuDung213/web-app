@@ -8,7 +8,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Projects Detail</h3>
+                <h3 class="card-title">プロジェクト詳細</h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -27,7 +27,7 @@
                                 <div class="info-box bg-info">
                                     <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Status</span>
+                                        <span class="info-box-text">ステータス</span>
                                         <span class="info-box-number">{{ $project->status }}</span>
                                     </div>
                                 </div>
@@ -36,7 +36,7 @@
                                 <div class="info-box bg-warning">
                                     <span class="info-box-icon"><i class="far fa-calendar-alt"></i></span>
                                     <div class="info-box-content">
-                                        <span class="info-box-text">Start Date</span>
+                                        <span class="info-box-text">開始期間</span>
                                         <span
                                             class="info-box-number">{{ \Carbon\Carbon::parse($project->end_date)->format('Y-m-d') }}</span>
                                     </div>
@@ -49,7 +49,7 @@
                                     <span class="info-box-icon"><i class="far fa-calendar-alt"></i></span>
 
                                     <div class="info-box-content">
-                                        <span class="info-box-text">End Date</span>
+                                        <span class="info-box-text">終了期間</span>
                                         <span
                                             class="info-box-number">{{ \Carbon\Carbon::parse($project->end_date)->format('Y-m-d') }}</span>
                                     </div>
@@ -59,7 +59,7 @@
                         </div>
                         <div class="row mb-4">
                             <div class="col-12">
-                                <h4>Members</h4>
+                                <h4>クリエイター</h4>
                                 <div class="row text-center">
                                     <div class="col-md-1 mb-3">
                                         <button type="button"
@@ -109,8 +109,8 @@
                                                     value="{{ $monthYear }}" required>
                                             </div>
                                             <div class="col-2">
-                                                <button type="submit" class="btn btn-success" name="search"
-                                                    title="Search">Search</button>
+                                                <button type="submit" class="btn btn-success text-nowrap" name="search"
+                                                    title="Search">検索</button>
                                             </div>
                                         </div>
                                     </div>
@@ -162,17 +162,14 @@
                         <p class="text-muted">{{ $project->description }}</p>
                         <br>
                         <div class="text-muted">
-                            <p class="text-sm">Client Company
+                            <p class="text-sm">クライアント
                                 <b class="d-block text-danger">{{ $project->Client->client_name }}</b>
-                            </p>
-                            <p class="text-sm">Project Leader
-                                <b class="d-block">Tony Chicken</b>
                             </p>
                         </div>
 
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">Tasks</h4>
+                                <h4 class="card-title">タスク</h4>
                             </div>
                             <div class="card-body">
                                 <!-- the task -->
@@ -226,8 +223,8 @@
                         <div class="text-center mt-5 mb-3">
                             <a href="javascript:void(0)" class="btn btn-sm btn-info"
                                 data-url="{{ route('admin.task.create') }}" id="add-task"
-                                data-target="#addTaskModal">Add
-                                Task</a>
+                                data-target="#addTaskModal">タスク作成
+                                </a>
                             @include('admin.task.add')
                         </div>
                     </div>
@@ -258,7 +255,7 @@
                     <div class="modal-body">
 
                         <div class="form-group">
-                            <label>Creators</label>
+                            <label>クリエイター</label>
                             <div class="select2-lightblue">
                                 <select id="creators" name="creators[]" class="select2" multiple="multiple"
                                     data-placeholder="Select creators" data-dropdown-css-class="select2-lightblue"
@@ -274,8 +271,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button type="submit" id="addMemberBtn" class="btn btn-primary">Add</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
+                        <button type="submit" id="addMemberBtn" class="btn btn-primary">作成</button>
                     </div>
                 </form>
             </div>

@@ -47,7 +47,7 @@
                                             @foreach ($project->creators as $creator)
                                                 <div class="col-md-4 text-center px-2">
                                                     @php($avatar = $creator->avatar)
-                                                    <img width="38" height="45" class="dropbtn rounded-circle　avatar"
+                                                    <img width="38" height="45" class="rounded-circle　bordered　avatar"
                                                         src="@if ($avatar == null) https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg
                                                     @else {{ asset('storage/' . $avatar) }} @endif"
                                                         alt="Avatar">
