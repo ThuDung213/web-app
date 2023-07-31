@@ -3,10 +3,16 @@
 @section('title', 'Dashboard')
 
 @section('body')
-            <!-- Main content -->
-            <div class="content">
-
+    <!-- Main content -->
+    <div class="content">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <img src="{{ asset('img/flower.gif') }}" alt="Example GIF" class="img-fluid rounded">
+                </div>
             </div>
-            <!-- /.content -->
+        </div>
+    </div>
+    <!-- /.content -->
 
 @endsection

@@ -4,15 +4,16 @@
     <div class="container principal">
         <!-- Search form -->
         <div class="row mb-5 d-flex justify-content-center">
-        <form action="{{ route('home.client.search') }}" method="POST" class="mb-5">
-            @csrf
-            <br>
-            {{-- <div class="container"> --}}
+            <form action="{{ route('home.client.search') }}" method="POST" class="mb-5">
+                @csrf
+                <br>
+                {{-- <div class="container"> --}}
                 <div class="row">
                     <div class="container-fluid">
                         <div class="form-gourp row justify-content-center">
-                            <div class="col-sm-3">
-                                <input type="month" class="form-control" id="month" name="month" value="{{ $monthYear }}" required>
+                            <div class="col-sm-3 mb-3">
+                                <input type="month" class="form-control" id="month" name="month"
+                                    value="{{ $monthYear }}" required>
                             </div>
                             <div class="col-sm-2">
                                 <button type="submit" class="btn btn-auth" name="search" title="Search">検索</button>
@@ -20,8 +21,8 @@
                         </div>
                     </div>
                 </div>
-            {{-- </div> --}}
-        </form>
+                {{-- </div> --}}
+            </form>
         </div>
         <div class="row justify-content-center">
             <div class="col-md-8 text-center">
@@ -36,7 +37,7 @@
                         <div class="col-lg-12 text-center">
                             <div class="row">
                                 <div class="col mb-4">
-                                    <div class="card-section border rounded p-3">
+                                    <div class="card-section border rounded p-3 bg-white">
                                         <div class="card-header-first rounded pb-5 mb-4">
                                             <h2 class="card-header-title text-white pt-3">{{ $project->project_name }}</h2>
                                             <div class="text-center text-white">
@@ -47,8 +48,8 @@
                                             @foreach ($project->creators as $creator)
                                                 <div class="col-md-4 text-center px-2">
                                                     @php($avatar = $creator->avatar)
-                                                    <img width="38" height="45" class="rounded-circle　bordered　avatar"
-                                                        src="@if ($avatar == null) https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg
+                                                    <img width="38" height="45" class="img-radius rounded-circle"
+                                                        src="@if ($avatar == null) https://bootdey.com/img/Content/avatar/avatar7.png
                                                     @else {{ asset('storage/' . $avatar) }} @endif"
                                                         alt="Avatar">
                                                     <p>{{ $creator->name }}</p>

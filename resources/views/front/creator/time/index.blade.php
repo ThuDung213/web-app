@@ -2,7 +2,7 @@
 
 @section('title', 'Add Project')
 @section('content')
-    <div class="container ">
+    <div class="container-md">
         @csrf
         <!-- Modal -->
         <div class="modal fade" id="timeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -33,17 +33,31 @@
         <div class="row">
             <div class="col-sm-3">
                 <h4>タスク:</h4>
-                <ul class="list-group months">
-                    @foreach ($tasks as $task)
-                        <li class="list-group-item list-group-item-success" id="1">{{ $task->task_name }}</li>
-                    @endforeach
-                </ul>
-                <br>
+
+                @foreach ($tasks as $task)
+                    <ul class="list-group accordion">
+                        <li class="list-group-item list-group-item-success">
+                            <input type="radio" name="accordion" id="{{ $task->id }}">
+                            <label for="{{ $task->id }}">{{ $task->task_name }}</label>
+                            <div class="content">
+                                <h6 class="fw-bold">プロジェクト:</h6>{{ $task->Project->project_name }}
+                                <p class="mb-0 fw-bold">ディスクリプション:</p>{{ $task->description }}
+                                <p class="mb-0 fw-bold">クリエイター:</p>
+                                    @foreach ($task->creators as $creator)
+                                        <p class="mb-0">{{ $creator->name }}</p>
+                                    @endforeach
+                                <p><strong>ステータス:</strong>  {{ $task->status }}</p>
+                            </div>
+                        </li>
+                    </ul>
+                @endforeach
+
             </div>
             <div class="col-sm-9">
                 <div id='calendar' class="bg-white p-4 border-top border-5 border-info"></div>
             </div>
         </div>
+
 
     </div>
     <script>

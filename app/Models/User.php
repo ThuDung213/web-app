@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -74,6 +74,6 @@ class User extends Authenticatable
     }
     public function projects()
     {
-        return $this->belongsToMany(Project::class, 'task_assigned', 'creator_id', 'task_id');
+        return $this->belongsToMany(Project::class, 'project_creator', 'creator_id', 'project_id');
     }
 }

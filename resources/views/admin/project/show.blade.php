@@ -8,7 +8,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">プロジェクト詳細</h3>
+                <h3 class="card-title"><strong>プロジェクト詳細</strong></h3>
 
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -66,12 +66,14 @@
                                             class="btn btn-success btn-lg rounded-circle font-weight-bold"
                                             data-toggle="modal" data-target="#addMemberModal">+</button>
                                     </div>
-                                    <div class="col-md-10 mb-3 text-center">
+                                    <div class="col-md-10 col-12 mb-3 text-center">
                                         <div id="creators" class="row">
                                             @foreach ($project->creators as $creator)
-                                                <div class="col-12 col-sm-2" id="member">
+                                                <div class="col-3 col-sm-2 mb-3" id="member">
                                                     <div class="d-flex justify-content-start position-relative">
-                                                        <img src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                                                        @php($avatar = $creator->avatar)
+                                                        <img src="@if ($avatar == null) https://bootdey.com/img/Content/avatar/avatar7.png
+                                                        @else {{ asset('storage/' . $avatar) }} @endif"
                                                             width="50" class="rounded-circle" style="display: block">
                                                         <div class="overlay">
                                                             <form class="delete-member-form"
@@ -173,49 +175,54 @@
                             </div>
                             <div class="card-body">
                                 <!-- the task -->
-                                <div id="external-events">
-                                    @foreach ($tasks as $task)
-                                        <div class="card card-success collapsed-card mb-3">
-                                            <div class="card-header p-2">
-                                                <h3 class="card-title">{{ $task->task_name }}</h3>
+                                @if ($tasks->isEmpty())
+                                    <div class="text-center">
+                                        <p class="font-italic small text-muted">タスクはありません</p>
+                                    </div>
+                                @else
+                                    <div id="external-events">
+                                        @foreach ($tasks as $task)
+                                            <div class="card card-success collapsed-card mb-3">
+                                                <div class="card-header p-2">
+                                                    <h3 class="card-title">{{ $task->task_name }}</h3>
 
-                                                <div class="card-tools">
-                                                    <button type="button" class="btn btn-tool"
-                                                        data-card-widget="collapse"><i class="fas fa-plus"></i>
-                                                    </button>
-                                                    <form
-                                                        action="{{ route('admin.task.destroy', ['task' => $task->id]) }}"
-                                                        method="POST" style="display: inline-block;">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button type="submit"
-                                                            onclick="return confirm('Are you sure you want to delete this task?')"
-                                                            class="btn btn-tool"
-                                                            title="Remove">
-                                                            <i class="fas fa-times"></i>
+                                                    <div class="card-tools">
+                                                        <button type="button" class="btn btn-tool"
+                                                            data-card-widget="collapse"><i class="fas fa-plus"></i>
                                                         </button>
-                                                    </form>
+                                                        <form
+                                                            action="{{ route('admin.task.destroy', ['task' => $task->id]) }}"
+                                                            method="POST" style="display: inline-block;">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button type="submit"
+                                                                onclick="return confirm('Are you sure you want to delete this task?')"
+                                                                class="btn btn-tool" title="Remove">
+                                                                <i class="fas fa-times"></i>
+                                                            </button>
+                                                        </form>
+                                                    </div>
+                                                    <!-- /.card-tools -->
                                                 </div>
-                                                <!-- /.card-tools -->
+                                                <!-- /.card-header -->
+                                                <div class="card-body">
+                                                    <p class="mb-4">
+                                                        <strong>ディスクリプション:</strong><br>{{ $task->description }}</p>
+                                                    <p class="font-weight-bold">クリエイター:</p>
+                                                    <ul>
+                                                        @foreach ($task->creators as $creator)
+                                                            <li>{{ $creator->name }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                    <p><strong>ステータス: </strong> {{ $task->status }}</p>
+                                                </div>
+                                                <!-- /.card-body -->
                                             </div>
-                                            <!-- /.card-header -->
-                                            <div class="card-body">
-                                                <h5>Project Name: {{ $task->Project->project_name }}</h5>
-                                                <p>Description: {{ $task->description }}</p>
-                                                <p>Creators:</p>
-                                                <ul>
-                                                    @foreach ($task->creators as $creator)
-                                                        <li>{{ $creator->name }}</li>
-                                                    @endforeach
-                                                </ul>
-                                                <p>Status: {{ $task->status }}</p>
-                                            </div>
-                                            <!-- /.card-body -->
-                                        </div>
-                                        <!-- /.card -->
-                                    @endforeach
+                                            <!-- /.card -->
+                                        @endforeach
 
-                                </div>
+                                    </div>
+                                @endif
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -224,7 +231,7 @@
                             <a href="javascript:void(0)" class="btn btn-sm btn-info"
                                 data-url="{{ route('admin.task.create') }}" id="add-task"
                                 data-target="#addTaskModal">タスク作成
-                                </a>
+                            </a>
                             @include('admin.task.add')
                         </div>
                     </div>
@@ -261,9 +268,11 @@
                                     data-placeholder="Select creators" data-dropdown-css-class="select2-lightblue"
                                     style="width: 100%;" required name="creator_id">
                                     @foreach ($users as $user)
-                                        <option value="{{ $user->id }}">
-                                            {{ $user->name }} ({{ $user->email }})
-                                        </option>
+                                        @if (!in_array($user->id, $project->creators->pluck('id')->toArray()))
+                                            <option value="{{ $user->id }}">
+                                                {{ $user->name }} ({{ $user->email }})
+                                            </option>
+                                        @endif
                                     @endforeach
                                 </select>
                             </div>
@@ -272,7 +281,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                        <button type="submit" id="addMemberBtn" class="btn btn-primary">作成</button>
+                        <button type="submit" id="addMemberBtn" class="btn btn-info">作成</button>
                     </div>
                 </form>
             </div>

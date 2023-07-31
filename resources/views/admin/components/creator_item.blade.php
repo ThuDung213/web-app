@@ -1,5 +1,5 @@
 @foreach ($creators as $creator)
-    <div class="col-12 col-sm-2">
+    <div class="col-3 col-sm-2 mb-3">
         <div class="d-flex justify-content-start position-relative">
             <img src="https://bootdey.com/img/Content/avatar/avatar7.png"
                 width="50" class="rounded-circle" style="display: block">

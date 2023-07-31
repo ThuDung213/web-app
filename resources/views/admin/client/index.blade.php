@@ -11,6 +11,7 @@
                     <a href="{{ route('admin.client.create') }}" class="btn btn-success float-right m-2">クライアント新規作成</a>
                 </div>
                 <div class="col-md-12">
+                    <div class="table-responsive ">
                     <table class="table table-bordered table-hover table-stripe bg-white">
                         <thead class="table-info">
                             <tr>
@@ -41,7 +42,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-xs"
-                                                onclick="return confirm('Are you sure you want to delete this project?')"><i
+                                                onclick="return confirm('このクライアントを削除してもよろし?')"><i
                                                     class="fas fa-trash"></i></button>
                                         </form>
                                     </td>
@@ -50,6 +51,7 @@
 
                         </tbody>
                     </table>
+                    </div>
                 </div>
             </div>
             <!-- /.row -->

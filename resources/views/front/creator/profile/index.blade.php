@@ -1,11 +1,11 @@
 @extends('layouts.master')
 
 @section('content')
-    <section style="background-color: #eee;">
+    <section>
         <div class="container py-5">
             <div class="row">
                 <div class="col">
-                    <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+                    <nav aria-label="breadcrumb" class="bg-auth rounded-3 p-3 mb-4">
                         <ol class="breadcrumb mb-0">
                             <li class="breadcrumb-item active" aria-current="page">プロフィール</li>
                         </ol>

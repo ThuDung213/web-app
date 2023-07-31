@@ -56,6 +56,11 @@ class RegisterController extends Controller
         ]);
     }
 
+    protected function emailExists($email)
+    {
+        return User::where('email', $email)->exists();
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -64,11 +69,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'role' => 1,
-        ]);
+        $emailExists = $this->emailExists($data['email']);
+        if ($emailExists) {
+            return redirect()->back()->withErrors(['email' => 'Email already exists.']);
+        } else {
+            return User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'role' => 1,
+            ]);
+        }
     }
 }

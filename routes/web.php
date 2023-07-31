@@ -21,7 +21,7 @@ Route::get('/', function () {
     return view('layouts.app');
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 // User Route
 Route::middleware(['auth','client'])->group(function () {
