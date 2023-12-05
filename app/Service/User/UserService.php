@@ -14,9 +14,9 @@ class UserService extends BaseService implements UserServiceInterface
     {
         $this->repository = $userRepository;
     }
-    public function getUserById()
+    public function getUserById($id)
     {
-        $this->repository->getUserById();
+        return $this->repository->getUserById($id);
     }
     public function getUserByRole($role, $request)
     {
@@ -26,5 +26,10 @@ class UserService extends BaseService implements UserServiceInterface
     public function getCreatorsByProject($id)
     {
         return $this->repository->getCreatorsByProject($id);
+    }
+
+    public function getAllExceptUser($id)
+    {
+        return $this->repository->getAllExceptUser($id);
     }
 }

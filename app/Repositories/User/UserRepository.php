@@ -14,9 +14,9 @@ class UserRepository extends BaseRepositories implements UserRepositoryInterface
         return User::class;
     }
 
-    public function getUserById()
+    public function getUserById($id)
     {
-        $user = Auth::user()->id;
+        $user = $this->find($id);
         return $user;
     }
 
@@ -32,5 +32,10 @@ class UserRepository extends BaseRepositories implements UserRepositoryInterface
             return $task->creators;
         })->unique('id');
         return $creators;
+    }
+    public function getAllExceptUser($id)
+    {
+        $users = $this->model->where('id', '!=', $id)->get();
+        return $users;
     }
 }

@@ -5,7 +5,8 @@ use App\Service\ServiceInterface;
 
 interface UserServiceInterface extends ServiceInterface
 {
-    public function getUserById();
+    public function getUserById($id);
     public function getUserByRole($role, $request);
     public function getCreatorsByProject($id);
+    public function getAllExceptUser($id);
 }

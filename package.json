@@ -19,6 +19,7 @@
         "sass": "^1.56.1"
     },
     "dependencies": {
+        "socket.io": "^4.7.2",
         "vite": "^4.3.9"
     }
 }

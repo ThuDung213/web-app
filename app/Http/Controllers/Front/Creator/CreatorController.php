@@ -23,4 +23,8 @@ class CreatorController extends Controller
         $projects = $this->projectService->getRelatedProjects($creator);
         return view('front.creator.index', compact('projects','creator'));
     }
+    public function chatbox()
+    {
+        return view('chat.index');
+    }
 }

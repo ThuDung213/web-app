@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\Chat\ChatController;
+use App\Http\Controllers\Chat\MessageController;
 use App\Http\Controllers\Front\Creator\WorkingTimeController;
 use App\Http\Controllers\Front\Creator\CreatorController;
 use App\Http\Controllers\Front\Creator\ProfileController;
+use App\Http\Livewire\Chat\CreateChat;
+use App\Http\Livewire\Chat\Main;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,15 +28,19 @@ Route::get('/', function () {
 Auth::routes(['verify' => true]);
 
 // User Route
-Route::middleware(['auth','client'])->group(function () {
+Route::middleware(['auth', 'client'])->group(function () {
     Route::get("/client/home", [App\Http\Controllers\Front\Client\ClientController::class, 'index'])->name('home.client');
     Route::post("/client/home/search", [App\Http\Controllers\Front\Client\ClientController::class, 'search'])->name('home.client.search');
 });
 
 // Creator Route
-Route::middleware(['auth','creator'])->prefix('creator')->group(function () {
+Route::middleware(['auth', 'creator'])->prefix('creator')->group(function () {
     Route::get("/home", [CreatorController::class, 'index'])->name('home.creator');
 
+    Route::get('/chatbox', [ChatController::class, 'index']);
+    Route::get('/chatbox/{id}', [MessageController::class, 'conversation'])->name('chat.conversation');
+    Route::get('/users', CreateChat::class)->name('users');
+    Route::get('/chat{key?}', Main::class)->name('chat');
     //Working Time
     Route::get("{creator}/assign/{project}/manhours", [WorkingTimeController::class, 'index'])->name('time.index');
     Route::post("{creator}/project/{project}/working-time", [WorkingTimeController::class, 'store'])->name('time.store');
@@ -76,7 +84,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     ]);
     Route::post('/project/{project}/task', [App\Http\Controllers\Admin\TaskController::class, 'store'])->name('admin.task.store');
 
-    Route::resource('/client',App\Http\Controllers\Admin\ClientController::class)->names([
+    Route::resource('/client', App\Http\Controllers\Admin\ClientController::class)->names([
         'index' => 'admin.client.index',
         'create' => 'admin.client.create',
         'store' => 'admin.client.store',
@@ -90,4 +98,3 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/creators/{creator}', [App\Http\Controllers\Admin\CreatorController::class, 'show'])->name('admin.creator.show');
     Route::post('/creators/{creator}/search', [App\Http\Controllers\Admin\CreatorController::class, 'search'])->name('admin.creator.search');
 });
-
