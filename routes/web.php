@@ -39,6 +39,7 @@ Route::middleware(['auth', 'creator'])->prefix('creator')->group(function () {
 
     Route::get('/chatbox', [ChatController::class, 'index']);
     Route::get('/chatbox/{id}', [MessageController::class, 'conversation'])->name('chat.conversation');
+    Route::post('/sendmessage', [MessageController::class, 'sendMessage'])->name('chat.sendMessage');
     Route::get('/users', CreateChat::class)->name('users');
     Route::get('/chat{key?}', Main::class)->name('chat');
     //Working Time

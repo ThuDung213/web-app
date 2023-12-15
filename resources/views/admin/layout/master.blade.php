@@ -100,7 +100,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 {{-- <i class="nav-icon fas fa-th"></i> --}}
                                 <i class="nav-icon fas fas fa-handshake"></i>
                                 <p>
-                                    クライアント管理
+                                    Client Management
                                 </p>
                             </a>
                         </li>
@@ -109,7 +109,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 class="nav-link {{ request()->segment(2) == 'project' ? 'mm-active' : '' }}">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
-                                    プロジェクト管理
+                                    Project Management
                                 </p>
                             </a>
                         </li>
@@ -118,7 +118,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                                 class="nav-link {{ request()->segment(2) == 'creator' ? 'mm-active' : '' }}">
                                 <i class="nav-icon fas fa-tree"></i>
                                 <p>
-                                    クリエイター管理
+                                    Creator Management
                                 </p>
                             </a>
                         </li>
@@ -147,7 +147,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                     <a class="dropdown-item text-white bg-transparent" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                              document.getElementById('logout-form').submit();">
-                        {{ __('ログアウト') }}
+                        {{ __('Logout') }}
                     </a>
                 </h5>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
@@ -160,7 +160,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Main Footer -->
         <footer class="main-footer">
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2023 <a href="https://adminlte.io">トゥーズン</a>.</strong>
+            <strong>Copyright &copy; 2023 <a href="https://adminlte.io">Thu Dung</a>.</strong>
         </footer>
     </div>
     <!-- ./wrapper -->

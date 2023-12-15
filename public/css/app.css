@@ -11702,6 +11702,19 @@ a.add img {
     left: 34px;
     height: 12px;
     width: 12px;
+    background: #969696;
+    border-radius: 50%;
+    border: 2px solid #fff;
+}
+.online {
+    display: block;
+    content: '';
+    clear: both;
+    position: absolute;
+    bottom: 3px;
+    left: 34px;
+    height: 12px;
+    width: 12px;
     background: #00DB75;
     border-radius: 50%;
     border: 2px solid #fff;

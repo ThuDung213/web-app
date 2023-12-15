@@ -16,7 +16,7 @@
                                     value="{{ $monthYear }}" required>
                             </div>
                             <div class="col-sm-2">
-                                <button type="submit" class="btn btn-auth" name="search" title="Search">検索</button>
+                                <button type="submit" class="btn btn-auth" name="search" title="Search">Search</button>
                             </div>
                         </div>
                     </div>

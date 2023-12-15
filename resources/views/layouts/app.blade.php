@@ -73,12 +73,12 @@
                 <ul class="navbar-nav me-auto mb-1 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="#about" aria-label="Brings you to the frontpage">
-                            私について
+                            About Us
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#workwithus">
-                            お問い合わせ
+                            Contact Us
                         </a>
                     </li>
                 </ul>
@@ -87,7 +87,7 @@
                         @guest
                             <li class="nav-item">
                                 <a href="{{ route('login') }}" class="nav-link link-dark pb-1 link-fancy me-2">
-                                    ログイン
+                                    Login
                                     <path
                                         d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
                                     <path
@@ -97,7 +97,7 @@
                             @if (Route::has('register'))
                                 <li class="nav-item">
                                     <a href="{{ route('register') }}" class="nav-link link-dark pb-1 link-fancy me-2">
-                                        登録
+                                        Register
                                         <path
                                             d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
                                         <path
@@ -109,7 +109,7 @@
                             @if (auth()->user()->role == 'admin')
                                 <li class="nav-item">
                                     <a href="{{ route('home.admin') }}" class="nav-link link-dark pb-1 link-fancy me-2">
-                                        マイページ
+                                        My Page
                                         <path
                                             d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
                                         <path
@@ -119,7 +119,7 @@
                             @elseif (auth()->user()->role == 'creator')
                                 <li class="nav-item">
                                     <a href="{{ route('home.creator') }}" class="nav-link link-dark pb-1 link-fancy me-2">
-                                        マイページ
+                                        My Page
                                         <path
                                             d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
                                         <path
@@ -129,7 +129,7 @@
                             @else
                                 <li class="nav-item">
                                     <a href="{{ route('home.client') }}" class="nav-link link-dark pb-1 link-fancy me-2">
-                                        マイページ
+                                        My Page
                                         <path
                                             d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
                                         <path
@@ -153,10 +153,10 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-7 py-vh-6 position-relative" data-aos="fade-right">
-                        <h1 class="display-1 fw-bold mt-5">タレント<br>マネジメントは<br>こちら!</h1>
-                        <p class="lead">タスク管理から進捗状況まで、効果的なコラボレーションツールでプロジェクトを成功に導く!</p>
+                        <h1 class="display-1 fw-bold mt-5">Project Management Website</h1>
+                        <p class="lead">From task management to progress tracking, lead your projects to success with effective collaboration tools!</p>
                         <a href="{{ route('login') }}"
-                            class="btn btn-dark btn-xl shadow me-3 rounded-0 my-5">始めましょう！</a>
+                            class="btn btn-dark btn-xl shadow me-3 rounded-0 my-5">Get Started</a>
                     </div>
                 </div>
             </div>
@@ -167,17 +167,17 @@
         <div id="about" class="container py-vh-4 w-100 overflow-hidden">
             <div class="row d-flex justify-content-center align-items-center">
                 <div class="col-lg-5">
-                    <h3 class="py-5 border-top border-dark" data-aos="fade-right">私について</h3>
+                    <h3 class="py-5 border-top border-dark" data-aos="fade-right">About Us</h3>
                 </div>
                 <div class="col-md-7" data-aos="fade-left">
                     <blockquote>
-                        <div class="fs-4 my-3 fw-light pt-4 border-bottom pb-3">「このウェブサイトは１っか月ぐらい行われました。
-                            調べながら開発しましたから、新しくて面白い技術を習いました。嬉しかったです。評価してくださって改善点をごコメントお願いします。
-                            ありがとうございます！」</div>
+                        <div class="fs-4 my-3 fw-light pt-4 border-bottom pb-3">This website has been around for about a month.
+                            I developed it while researching it, so I learned new and interesting techniques. I was happy. Please rate it and leave comments for improvements.
+                            Thank you! </div>
                         <img src="{{ asset('img/junjun.jpg') }}" width="64" height="64"
                             class="img-fluid rounded-circle me-3" alt="" data-aos="fade">
-                        <span><span class="fw-bold">トゥズン,</span>
-                            システムエンジニア。</span>
+                        <span><span class="fw-bold">Thu Dung,</span>
+                            Student。</span>
                     </blockquote>
                 </div>
 
@@ -192,7 +192,7 @@
                         <div class="row d-flex justify-content-center">
                             <div class="col-12 col-lg-8 text-center">
                                 <h3 class="fs-2 fw-light">
-                                    <span class="fw-bold">お問い合わせ</span>
+                                    <span class="fw-bold">Contact</span>
                                 </h3>
                             </div>
                             <div class="col-12 col-lg-8 text-center">
@@ -201,12 +201,12 @@
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group mb-2 mt-2">
-                                                    <input type="email" class="form-control" id="emailInput" placeholder="メールアドレス">
+                                                    <input type="email" class="form-control" id="emailInput" placeholder="Email Address">
                                                 </div>
                                             </div>
 
                                             <div class="col-auto">
-                                                <a href="#" class="btn btn-dark py-3 px-5">送信する
+                                                <a href="#" class="btn btn-dark py-3 px-5">Send
                                                 </a>
                                             </div>
                                         </div>

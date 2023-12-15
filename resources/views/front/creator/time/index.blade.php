@@ -9,22 +9,22 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">工数入力</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Working Time</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="workingTime" placeholder="工数を入力してください">
+                            <input type="text" class="form-control" id="workingTime" placeholder="Please enter working time">
                             <span id="hoursError" class="text-danger"></span>
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="workingContent" placeholder="仕事の内容">
+                            <input type="text" class="form-control" id="workingContent" placeholder="Working content">
                             <span id="contentError" class="text-danger"></span>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">キャンセル</button>
-                        <button type="button" id="saveBtn" class="btn btn-primary">保存</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" id="saveBtn" class="btn btn-primary">Save</button>
                     </div>
                 </div>
             </div>
@@ -32,7 +32,7 @@
 
         <div class="row">
             <div class="col-sm-3">
-                <h4>タスク:</h4>
+                <h4>TASK:</h4>
 
                 @foreach ($tasks as $task)
                     <ul class="list-group accordion">
@@ -40,13 +40,13 @@
                             <input type="radio" name="accordion" id="{{ $task->id }}">
                             <label for="{{ $task->id }}">{{ $task->task_name }}</label>
                             <div class="content">
-                                <h6 class="fw-bold">プロジェクト:</h6>{{ $task->Project->project_name }}
-                                <p class="mb-0 fw-bold">ディスクリプション:</p>{{ $task->description }}
-                                <p class="mb-0 fw-bold">クリエイター:</p>
+                                <h6 class="fw-bold">Project:</h6>{{ $task->Project->project_name }}
+                                <p class="mb-0 fw-bold">Description:</p>{{ $task->description }}
+                                <p class="mb-0 fw-bold">Creator:</p>
                                     @foreach ($task->creators as $creator)
                                         <p class="mb-0">{{ $creator->name }}</p>
                                     @endforeach
-                                <p><strong>ステータス:</strong>  {{ $task->status }}</p>
+                                <p><strong>Status:</strong>  {{ $task->status }}</p>
                             </div>
                         </li>
                     </ul>

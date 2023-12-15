@@ -9,23 +9,15 @@ class Message extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'sender_id',
-        'receiver_id',
-        'conversation_id',
-        'read',
-        'type',
-        'body',
-    ];
-
     // Relationship
 
-    public function conversation()
+    public function user_messages()
     {
-        return $this->belongsTo(Conversation::class);
+        return $this->hasMany(UserMessage::class);
     }
-    public function user()
+    public function users()
     {
-        return $this->belongsTo(User::class, 'sender_id');
+        return $this->belongsToMany(User::class, 'user_messages', 'message_id', 'sender_id')
+            ->withTimestamps();
     }
 }

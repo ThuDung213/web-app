@@ -43,13 +43,15 @@
                                                     <!-- chat-list -->
                                                     <div class="chat-list">
                                                         @foreach ($friends as $key => $friend)
-                                                            <a href="{{ route('chat.conversation', $friend->id)}}" class="d-flex align-items-center">
+                                                            <a href="{{ route('chat.conversation', $friend->id) }}"
+                                                                class="d-flex align-items-center">
                                                                 <div class="flex-shrink-0">
                                                                     <img src="@if ($friend->avatar == null) https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg
                                                                         @else {{ asset('storage/' . $avatar) }} @endif"
                                                                         alt="avatar" class="rounded-circle img-fluid"
                                                                         style="height: 70px;">
-                                                                    <span class="active"></span>
+                                                                    <span
+                                                                        class="active user-icon-{{ $friend->id }}"></span>
                                                                 </div>
                                                                 <div class="flex-grow-1 ms-3">
                                                                     <h3>{{ $friend->name }}</h3>
@@ -71,7 +73,7 @@
                                                                 <img class="img-fluid"
                                                                     src="https://mehedihtml.com/chatbox/assets/img/user.png"
                                                                     alt="user img">
-                                                                <span class="active"></span>
+                                                                <span class=""></span>
                                                             </div>
                                                             <div class="flex-grow-1 ms-3">
                                                                 <h3>Mehedi Hasan</h3>
@@ -110,10 +112,10 @@
                                                             @else {{ asset('storage/' . $avatar) }} @endif"
                                                             alt="avatar" class="rounded-circle img-fluid"
                                                             style="height: 60px;">
-                                                            <span class="chat-list active"></span>
+                                                        <span class="chat-list active"></span>
                                                     </div>
                                                     <div class="flex-grow-1 ms-3">
-                                                        <h3>{{$chat_friend->name}}</h3>
+                                                        <h3>{{ $chat_friend->name }}</h3>
                                                         <p>front end developer</p>
                                                     </div>
                                                 </div>
@@ -144,15 +146,19 @@
                                     <div class="modal-body">
                                         <div class="msg-body">
                                             <ul>
-                                                {{-- <li class="sender">
-                                                    <p> Hey, Are you there? </p>
-                                                    <span class="time">10:06 am</span>
-                                                </li>
-                                                <li class="repaly">
-                                                    <p>yes!</p>
-                                                    <span class="time">10:20 am</span>
-                                                </li> --}}
-                                                <p>Chat body here</p>
+                                                @foreach ($messages as $key => $message)
+                                                    @if ($chat_friend->id == $message->users->first()->id)
+                                                        <li class="sender">
+                                                            <p>{{ $message->message }}</p>
+                                                            <span class="time">10:20 am</span>
+                                                        </li>
+                                                    @else
+                                                    <li class="repaly">
+                                                        <p> {{ $message->message }} </p>
+                                                        <span class="time">10:06 am</span>
+                                                    </li>
+                                                    @endif
+                                                @endforeach
                                             </ul>
                                         </div>
                                     </div>
@@ -160,8 +166,7 @@
 
                                     <div class="send-box">
                                         <form action="">
-                                            <input type="text" class="form-control" aria-label="message…"
-                                                placeholder="Write message…">
+                                            <textarea id="chatInput" class="form-control" aria-label="message…" placeholder="Write message…"></textarea>
 
                                             <button type="button"><i class="fa fa-paper-plane" aria-hidden="true"></i>
                                                 Send</button>
@@ -219,3 +224,84 @@
     </section>
     <!-- char-area -->
 @endsection
+@push('scripts') $friend
+    <script>
+        $(function() {
+
+            let user_id = {{ Auth::user()->id }};
+            let friend_id = "{{ $chat_friend->id }}";
+            let ip_address = '127.0.0.1';
+            let socket_port = '3000';
+            let socket = io(ip_address + ':' + socket_port);
+
+            let chatInput = $('#chatInput');
+            socket.emit("user_connected", user_id);
+
+            // send messafes whenn press enter
+            chatInput.keypress(function(e) {
+                let message = $(this).val();
+                console.log(message);
+                const messageData = {
+                    user_id: user_id,
+                    message: message,
+                };
+                if (e.which == 13 && !e.shiftKey) {
+                    socket.emit('sendChatToServer', messageData);
+                    sendMessage(message);
+                    chatInput.val('');
+                    return false;
+                }
+            });
+
+            // callback function to send messages to client
+            socket.on('sendChatToClient', (message) => {
+                if (message.user_id == user_id) {
+                    $('.msg-body ul').append(
+                    `<li class="repaly"><p>${message.message}</p><span class="time">10:20 am</span></li>`);
+                } else {
+                    $('.msg-body ul').append(
+                    `<li class="sender"><p>${message.message}</p><span class="time">10:20 am</span></li>`);
+                }
+            });
+
+            // callback function to update user status
+            socket.on('updateUserStatus', (data) => {
+                console.log('Data:', data);
+                $.each(data, function(key, val) {
+                    console.log('Processing user:', key);
+                    let $userIcon = $('.user-icon-' + key);
+                    if (val !== null && val !== 0) {
+                        console.log('User', key, 'is online.');
+                        $userIcon.removeClass('active');
+                        $userIcon.addClass('online');
+                    }
+                });
+            });
+
+            function sendMessage(message) {
+                let url = "{{ route('chat.sendMessage') }}";
+                let form = $(this);
+                let formData = new FormData();
+                let token = "{{ csrf_token() }}";
+
+                formData.append('message', message);
+                formData.append('_token', token);
+                formData.append('receiver_id', friend_id);
+
+                $.ajax({
+                    url: url,
+                    type: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    dataType: 'JSON',
+                    success: function(response) {
+                        if (response.success) {
+                            console.log(response.data);
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+@endpush

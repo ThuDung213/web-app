@@ -123,5 +123,5 @@
     <script src="{{ asset('js/main.js') }}"></script>
     @livewireScripts
 </body>
-
+@stack('scripts')
 </html>

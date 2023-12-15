@@ -3,7 +3,7 @@
         <div class="modal-content">
             <!-- Modal header -->
             <div class="modal-header bg-info">
-                <h5 class="modal-title" id="addTaskModalLabel">タスク作成</h5>
+                <h5 class="modal-title" id="addTaskModalLabel">Add Task</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -15,13 +15,13 @@
                 <form id="formAddTask" method="POST" action="{{ route('admin.task.store', ['project' => $project-> id])}}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="task_name">タスク名</label>
+                        <label for="task_name">Tasks</label>
                         <input type="text" class="form-control" id="task_name" placeholder="Enter task name" name="task_name"
                             required>
                     </div>
 
                     <div class="form-group">
-                        <label>クリエイター</label>
+                        <label>Creators</label>
                         <div class="select2-purple">
                             <select id="task_creators" name="task_creators[]" class="select2" multiple="multiple" data-placeholder="Select creators"
                                 data-dropdown-css-class="select2-purple" style="width: 100%;" required
@@ -36,12 +36,12 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="description">ディスクリプション</label>
+                        <label for="description">Description</label>
                         <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter task description" required></textarea>
                     </div>
 
                     <div class="form-group">
-                        <label for="status">ステータス</label>
+                        <label for="status">Status</label>
                         <select name="status" class="form-control" id="status" required>
                             <option value="pending">Pending</option>
                             <option value="in_progress">In Progress</option>
@@ -51,8 +51,8 @@
 
                     <!-- Modal Footer -->
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">キャンセル</button>
-                        <button id="submitBtn" type="submit" class="btn btn-info">作成</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button id="submitBtn" type="submit" class="btn btn-info">Add</button>
                     </div>
                 </form>
             </div>

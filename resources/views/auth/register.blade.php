@@ -12,7 +12,7 @@
                             @csrf
 
                             <div class="row">
-                                <label for="name" class="col-form-label">{{ __('クリエイター名') }}</label>
+                                <label for="name" class="col-form-label">{{ __('Creator name') }}</label>
                             </div>
                             <div class="row mb-2">
                                 <div class="col">
@@ -29,7 +29,7 @@
                             </div>
 
                             <div class="row">
-                                <label for="email" class="col-form-label">{{ __('メールアドレス') }}</label>
+                                <label for="email" class="col-form-label">{{ __('Email') }}</label>
                             </div>
                             <div class="row mb-2">
                                 <div class="col">
@@ -46,7 +46,7 @@
                             </div>
 
                             <div class="row">
-                                <label for="password" class="col-form-label">{{ __('パスワード') }}</label>
+                                <label for="password" class="col-form-label">{{ __('Password') }}</label>
                             </div>
                             <div class="row mb-3">
                                 <div class="col">
@@ -75,7 +75,7 @@
                             <div class="row mb-0">
                                 <div class="col-md-8 offset-md-2">
                                     <button type="submit" class="form-control btn btn-auth submit rounded-pill">
-                                        {{ __('登録') }}
+                                        {{ __('Register') }}
                                     </button>
                                 </div>
                             </div>

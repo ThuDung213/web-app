@@ -7,7 +7,7 @@
                 <div class="col">
                     <nav aria-label="breadcrumb" class="bg-auth rounded-3 p-3 mb-4">
                         <ol class="breadcrumb mb-0">
-                            <li class="breadcrumb-item active" aria-current="page">プロフィール</li>
+                            <li class="breadcrumb-item active" aria-current="page">Profile</li>
                         </ol>
                     </nav>
                 </div>
@@ -27,7 +27,7 @@
                             <div class="d-flex justify-content-center mb-2">
                                 <button type="button" class="btn btn-auth"><a
                                         href="{{ route('profile.edit', ['profile' => Auth::user()->id]) }}"
-                                        class="text-white text-decoration-none">編集</a> </button>
+                                        class="text-white text-decoration-none">Edit</a> </button>
                                 {{-- <button type="button" class="btn btn-outline-pink ms-1">Message</button> --}}
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <p class="mb-0">クリエイター名</p>
+                                    <p class="mb-0">Creator name</p>
                                 </div>
                                 <div class="col-sm-9">
                                     <p class="text-muted mb-0">{{ Auth::user()->name }}</p>
@@ -47,7 +47,7 @@
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <p class="mb-0">メール</p>
+                                    <p class="mb-0">Email</p>
                                 </div>
                                 <div class="col-sm-9">
                                     <p class="text-muted mb-0">{{ Auth::user()->email }}</p>
@@ -56,7 +56,7 @@
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <p class="mb-0">電話番号</p>
+                                    <p class="mb-0">Phone</p>
                                 </div>
                                 <div class="col-sm-9">
                                     <p class="text-muted mb-0">{{ Auth::user()->phone ?? 'Null' }}</p>
@@ -65,7 +65,7 @@
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <p class="mb-0">アドレス</p>
+                                    <p class="mb-0">Address</p>
                                 </div>
                                 <div class="col-sm-9">
                                     <p class="text-muted mb-0">{{ Auth::user()->address ?? 'Null' }}</p>
@@ -74,7 +74,7 @@
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <p class="mb-0">ディスクリプション</p>
+                                    <p class="mb-0">Description</p>
                                 </div>
                                 <div class="col-sm-9">
                                     <p class="text-muted mb-0">{{ Auth::user()->description ?? 'Null' }}</p>

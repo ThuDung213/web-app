@@ -38,4 +38,13 @@ class UserRepository extends BaseRepositories implements UserRepositoryInterface
         $users = $this->model->where('id', '!=', $id)->get();
         return $users;
     }
+    public function getMessages($id)
+    {
+        $user = $this->find($id);
+        $messages = $user->messages()->get();
+        foreach ($messages as $message) {
+            dd($message);
+        }
+        return $messages;
+    }
 }

@@ -31,7 +31,7 @@
                                             </div>
                                             <div class="col-3">
                                                 <button type="submit" class="btn btn-success text-nowrap" name="search"
-                                                    title="Search">検索</button>
+                                                    title="Search">Search</button>
                                             </div>
                                         </div>
                                     </div>

@@ -32,4 +32,8 @@ class UserService extends BaseService implements UserServiceInterface
     {
         return $this->repository->getAllExceptUser($id);
     }
+    public function getMessages($id)
+    {
+        return $this->repository->getMessages($id);
+    }
 }

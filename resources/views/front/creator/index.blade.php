@@ -13,10 +13,10 @@
                     <i class="bi bi-heart text-white"></i>
                 </div>
                 <p class="mb-0 mt-2 font-italic">
-                    プロジェクトが割り当てられていません。
+                    There is no project available
                 </p>
                 <footer class="blockquote-footer pt-4 mt-4 border-top text-inherit">
-                    後でチェックしてください！
+                    Please check again
                 </footer>
               </blockquote>
             </div>
@@ -32,7 +32,7 @@
                         <h3>{{ $project->project_name }}</h3>
                         <p>{{ $project->description }}</p>
                         <a
-                            href="{{ route('time.index', ['creator' => $creator, 'project' => $project->id]) }}"><button>詳細</button></a>
+                            href="{{ route('time.index', ['creator' => $creator, 'project' => $project->id]) }}"><button>Detail</button></a>
                         <span class="count">{{ $key + 1 }}</span>
                     </div>
                 @endforeach

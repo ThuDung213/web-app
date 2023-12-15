@@ -4,7 +4,8 @@ namespace App\Providers;
 
 use App\Repositories\Client\ClientRepository;
 use App\Repositories\Client\ClientRepositoryInterface;
-
+use App\Repositories\Message\MessageRepository;
+use App\Repositories\Message\MessageRepositoryInterface;
 use App\Repositories\Project\ProjectRepository;
 use App\Repositories\Project\ProjectRepositoryInterface;
 use App\Repositories\Task\TaskRepository;
@@ -15,6 +16,8 @@ use App\Repositories\User\UserRepository;
 use App\Repositories\User\UserRepositoryInterface;
 use App\Service\Client\ClientService;
 use App\Service\Client\ClientServiceInterface;
+use App\Service\Message\MessageService;
+use App\Service\Message\MessageServiceInterface;
 use App\Service\Project\ProjectService;
 use App\Service\Project\ProjectServiceInterface;
 use App\Service\Task\TaskService;
@@ -84,6 +87,17 @@ class AppServiceProvider extends ServiceProvider
             TimeServiceInterface::class,
             TimeService::class
         );
+
+        //Message
+        $this->app->singleton(
+            MessageRepositoryInterface::class,
+            MessageRepository::class,
+        );
+        $this->app->singleton(
+            MessageServiceInterface::class,
+            MessageService::class,
+        );
+
     }
 
     /**

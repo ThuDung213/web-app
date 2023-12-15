@@ -8,20 +8,20 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 mt-3 mb-3">
-                    <a href="{{ route('admin.client.create') }}" class="btn btn-success float-right m-2">クライアント新規作成</a>
+                    <a href="{{ route('admin.client.create') }}" class="btn btn-success float-right m-2">ADD NEW CLIENT</a>
                 </div>
                 <div class="col-md-12">
                     <div class="table-responsive ">
                     <table class="table table-bordered table-hover table-stripe bg-white">
                         <thead class="table-info">
                             <tr>
-                                <th scope="col">クライアント</th>
-                                <th scope="col">アドレス</th>
-                                <th scope="col">電話番号</th>
-                                <th scope="col">メールアドレス</th>
-                                <th scope="col">町</th>
-                                <th scope="col">国</th>
-                                <th scope="col">アクション</th>
+                                <th scope="col">Client</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">City</th>
+                                <th scope="col">Country</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>

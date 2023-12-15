@@ -10,18 +10,18 @@
                 <div class="col-md-6">
                     <div class="card card-info">
                         <div class="card-header">
-                            <h3 class="card-title">プロジェクト新規作成フォーム</h3>
+                            <h3 class="card-title">New Project</h3>
                         </div>
                         <form method="post" action="{{ route('admin.project.index') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="project_name">プロジェクト名</label>
+                                    <label for="project_name">Name</label>
                                     <input type="text" class="form-control" id="project_name" name="project_name"
                                         placeholder="Project name" value="">
                                 </div>
                                 <div class="form-group">
-                                    <label>クライアントト名 (会社名)</label>
+                                    <label>Client name (Company name)</label>
                                     <select required class="form-control" id="client_id" name="client_id">
                                         <option value="">Client name</option>
                                         @foreach ($clients as $client)
@@ -32,33 +32,33 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="start_date">開始期間</label>
+                                    <label for="start_date">Start date</label>
                                     <input type="date" class="form-control" id="start_date" required
                                         placeholder="Start date" name="start_date">
                                 </div>
                                 <div class="form-group">
-                                    <label for="end_date">終了期間</label>
+                                    <label for="end_date">End date</label>
                                     <input type="date" class="form-control" id="end_date" required
                                         placeholder="End date" name="end_date">
                                 </div>
                                 <div class="form-group">
-                                    <label for="status">ステータス</label>
+                                    <label for="status">Status</label>
                                     <select required id="status" name="status" class="form-control">
-                                        <option value="0">ステータス</option>
+                                        <option value="0">Status</option>
                                         <option value="upcoming">Upcoming</option>
                                         <option value="inprogress">In progress</option>
                                         <option value="done">Done</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="description">ディスクリプション</label>
+                                    <label for="description">Description</label>
                                     <textarea type="text" class="form-control" id="description" name="description"
                                         required placeholder="Description"></textarea>
                                 </div>
                             </div>
 
                             <div class="card-footer d-flex justify-content-center">
-                                <button type="submit" class="btn btn-info">作成</button>
+                                <button type="submit" class="btn btn-info">Add</button>
                             </div>
 
                         </form>

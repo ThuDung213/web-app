@@ -17,7 +17,7 @@
                             @csrf
 
                             <div class="row">
-                                <label for="email" class="col-form-label">{{ __('メールアドレス') }}</label>
+                                <label for="email" class="col-form-label">{{ __('Email') }}</label>
                             </div>
                             <div class="row mb-3">
                                 <div class="col">
@@ -34,7 +34,7 @@
                             </div>
 
                             <div class="row">
-                                <label for="password" class="col-form-label">{{ __('パスワード') }}</label>
+                                <label for="password" class="col-form-label">{{ __('Password') }}</label>
                             </div>
                             <div class="row mb-3">
                                 <div class="col">
@@ -53,7 +53,7 @@
                             <div class="row mb-3">
                                 <div class="col-md-8 offset-md-2">
                                     <button type="submit" class="form-control btn btn-auth submit rounded-pill">
-                                        {{ __('ログイン') }}
+                                        {{ __('Login') }}
                                     </button>
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
                                         </label>
                                     </div>
                                     @if (Route::has('password.request'))
-                                        <a href="{{ route('password.request') }}" class="text-body btn btn-link">パスワードを忘れた?</a>
+                                        <a href="{{ route('password.request') }}" class="text-body btn btn-link">Forgot password?</a>
                                     @endif
                                 </div>
 

@@ -8,7 +8,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12 mt-3 mb-3">
-                    <a href="{{ route('admin.project.create') }}" class="btn btn-success float-right m-2">プロジェクト新規作成</a>
+                    <a href="{{ route('admin.project.create') }}" class="btn btn-success float-right m-2">ADD NEW PROJECT</a>
                 </div>
                 <div class="col-md-12">
                     <div class="table-responsive ">
@@ -16,12 +16,12 @@
                         <thead class="table-info">
                             <tr>
                                 <th scope="col">ID</th>
-                                <th scope="col">プロジェクト</th>
-                                <th scope="col">クライアント</th>
-                                <th scope="col">開始期間</th>
-                                <th scope="col">終了期間</th>
-                                <th scope="col">ステータス</th>
-                                <th scope="col">アクション</th>
+                                <th scope="col">Project</th>
+                                <th scope="col">Client</th>
+                                <th scope="col">Start Date</th>
+                                <th scope="col">End Date</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,7 +43,7 @@
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-xs"
-                                                onclick="return confirm('このプロジェクトを削除してもよろし?')"><i
+                                                onclick="return confirm('Do you want to delete this project?')"><i
                                                     class="fas fa-trash"></i></button>
                                         </form>
                                     </td>

@@ -9,4 +9,6 @@ interface UserRepositoryInterface extends RepositoriesInterface
     public function getUserByRole($role, $request);
     public function getCreatorsByProject($id);
     public function getAllExceptUser($id);
+    public function getMessages($id);
+
 }
